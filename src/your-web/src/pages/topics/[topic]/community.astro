@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import ProvenanceDisclosure from '../../../components/ProvenanceDisclosure.astro';
 import { getStaticTopicPaths, getTopic, getTopicRepos, partnersSnapshot } from '../../../lib/topics';
+import { url } from '../../../lib/url';
 
 export function getStaticPaths() {
 	return getStaticTopicPaths();
@@ -22,9 +23,9 @@ const showsSwissLink = repos.some((r) => partnersSnapshot.swissGovtechPartner.re
 		<p class="text-op-sm uppercase tracking-wide" style="color:var(--op-text-muted)">〇 {topic.label} Vertical</p>
 		<h1 class="text-op-h1" style="color:var(--op-text)">Who's behind it?</h1>
 		<nav class="flex gap-6 text-op-sm pt-2">
-			<a class="text-op-text-muted hover:text-op-blue-light" href={`/topics/${topic.slug}/`}>Landscape</a>
-			<a class="text-op-blue-light" href={`/topics/${topic.slug}/community/`}>Community</a>
-			<a class="text-op-text-muted hover:text-op-blue-light" href={`/topics/${topic.slug}/health/`}>Health &amp; Activity</a>
+			<a class="text-op-text-muted hover:text-op-blue-light" href={url(`/topics/${topic.slug}/`)}>Landscape</a>
+			<a class="text-op-blue-light" href={url(`/topics/${topic.slug}/community/`)}>Community</a>
+			<a class="text-op-text-muted hover:text-op-blue-light" href={url(`/topics/${topic.slug}/health/`)}>Health &amp; Activity</a>
 		</nav>
 	</section>
 

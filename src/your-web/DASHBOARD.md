@@ -31,6 +31,12 @@ Post-launch feedback changed several things from the plan below (the plan text s
 - **Upstream Code Dependencies** is no longer a plain-value card — `UpstreamDependenciesCard.astro` is a full-width widget listing the actual dependency repo names (from the CHAOSS API's `examples` field), each linking to GitHub.
 - Confirmed a real coverage-gap class while investigating a missing repo (`sdsc-ordes/compass`): some repos exist in Neo4j only as a bare stub node (an `OWNS` edge and a `full_name`, no other properties — discovered via a fork/dependency reference, never actually crawled) and are absent from the op-collections GitHub index this dashboard's snapshot reads from. Not fixed here — flagged as a real Open Pulse data gap, referenced in the landing disclaimer's coverage note.
 
+## Revision — 2026-09-03: GitHub Pages deploy
+
+- `.github/workflows/pages.yml` — deploys `src/your-web` to GitHub Pages on every push to `main` (build → `upload-pages-artifact` → `deploy-pages`). Node version comes from `package.json`'s `engines` field (`node-version-file`), matching the `ci.yml` fix for the same "Node 20 can't run Astro 7" failure. Optionally refreshes `src/data/*.json` before building if `OPENPULSE_ENDPOINT`/`OPENPULSE_AUTH` repo secrets are set; otherwise deploys from whatever snapshot is already committed.
+- **This repo is a GitHub Pages *project* page**, not a `<org>.github.io` root site — `astro.config.mjs` sets `site`/`base` to `https://sdsc-ordes.github.io/open-pulse-sdsc-biomedical`. Every internal link in the app now goes through `src/lib/url.ts`'s `url()` helper (prepends `import.meta.env.BASE_URL`) instead of a bare `href="/..."` — Astro does not rewrite hand-written absolute paths for you, only its own bundled assets. Confirmed via a built-`dist/` grep and a live preview-server click-through.
+- To actually go live: enable *Settings → Pages → Source: GitHub Actions* on the repo (not something this agent can do) — the workflow deploys on the next push to `main` after that.
+
 ## Scope & audience
 
 - **Scope**: Swiss Data Science Center (SDSC) itself — a lab-cluster dashboard sliced by 5 internal topics: **Biomedical**, **Environmental**, **Energy**, **Digital Society**, **Large Infrastructure**.

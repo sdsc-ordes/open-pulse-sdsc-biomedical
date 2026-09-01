@@ -1,21 +1,22 @@
 ---
 import topicMap from '../data/topic-map.json';
+import { url } from '../lib/url';
 
 const topics = topicMap.topics as { slug: string; label: string }[];
 ---
 
 <header class="sticky top-0 z-10 bg-op-surface border-b border-op-border">
 	<div class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between gap-6">
-		<a href="/" class="text-op-h4" style="color:var(--op-text)">SDSC Projects</a>
+		<a href={url('/')} class="text-op-h4" style="color:var(--op-text)">SDSC Projects</a>
 		<nav class="hidden md:flex items-center gap-6 text-op-sm flex-wrap">
 			{
 				topics.map((t) => (
-					<a href={`/topics/${t.slug}/`} class="text-op-text-muted hover:text-op-blue-light transition-colors">
+					<a href={url(`/topics/${t.slug}/`)} class="text-op-text-muted hover:text-op-blue-light transition-colors">
 						{t.label}
 					</a>
 				))
 			}
-			<a href="/cross-cutting-tooling/" class="text-op-text-muted hover:text-op-blue-light transition-colors">Cross-cutting tooling</a>
+			<a href={url('/cross-cutting-tooling/')} class="text-op-text-muted hover:text-op-blue-light transition-colors">Cross-cutting tooling</a>
 		</nav>
 	</div>
 </header>

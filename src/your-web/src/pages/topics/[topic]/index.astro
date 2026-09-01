@@ -4,6 +4,7 @@ import ProvenanceDisclosure from '../../../components/ProvenanceDisclosure.astro
 import ChaossMetricsExplorer from '../../../components/ChaossMetricsExplorer.astro';
 import RepoTable from '../../../components/RepoTable.astro';
 import { getStaticTopicPaths, getTopic, getTopicRepos, splitActiveArchive } from '../../../lib/topics';
+import { url } from '../../../lib/url';
 
 export function getStaticPaths() {
 	return getStaticTopicPaths();
@@ -27,9 +28,9 @@ const { active, archive } = splitActiveArchive(repos);
 			{active.length} active in the last year, {archive.length} archived.
 		</p>
 		<nav class="flex gap-6 text-op-sm pt-2">
-			<a class="text-op-blue-light" href={`/topics/${topic.slug}/`}>Landscape</a>
-			<a class="text-op-text-muted hover:text-op-blue-light" href={`/topics/${topic.slug}/community/`}>Community</a>
-			<a class="text-op-text-muted hover:text-op-blue-light" href={`/topics/${topic.slug}/health/`}>Health &amp; Activity</a>
+			<a class="text-op-blue-light" href={url(`/topics/${topic.slug}/`)}>Landscape</a>
+			<a class="text-op-text-muted hover:text-op-blue-light" href={url(`/topics/${topic.slug}/community/`)}>Community</a>
+			<a class="text-op-text-muted hover:text-op-blue-light" href={url(`/topics/${topic.slug}/health/`)}>Health &amp; Activity</a>
 		</nav>
 	</section>
 
@@ -39,7 +40,7 @@ const { active, archive } = splitActiveArchive(repos);
 				<div class="rounded-none border border-op-warning bg-op-surface p-4" style="border-color:rgba(251,191,36,0.4)">
 					<p class="text-op-sm" style="color:var(--op-warning)">
 						{uncertainCount} of these repos have a judgment-call Vertical assignment (no ground-truth taxonomy exists) —
-						see the coverage note on the <a href="/" class="underline">landing page</a>.
+						see the coverage note on the <a href={url('/')} class="underline">landing page</a>.
 					</p>
 				</div>
 			</section>

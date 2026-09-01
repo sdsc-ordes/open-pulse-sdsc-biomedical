@@ -6,6 +6,7 @@ import VerticalGrowthChart from '../components/VerticalGrowthChart.astro';
 import ProvenanceDisclosure from '../components/ProvenanceDisclosure.astro';
 import summary from '../data/summary.json';
 import type { SummarySnapshot } from '../lib/types';
+import { url } from '../lib/url';
 
 const data = summary as unknown as SummarySnapshot;
 ---
@@ -50,7 +51,7 @@ const data = summary as unknown as SummarySnapshot;
 		<StatTile value={String(data.totalContributors)} label="contributors" />
 		<StatTile value={String(data.orgSplit.length)} label="SDSC GitHub organisations" />
 		<StatTile value={String(data.topics.length)} label="Verticals tracked" />
-		<StatTile value={String(data.crossCuttingCount)} label="cross-cutting tooling repos" href="/cross-cutting-tooling/" />
+		<StatTile value={String(data.crossCuttingCount)} label="cross-cutting tooling repos" href={url('/cross-cutting-tooling/')} />
 		<StatTile value={String(data.totalNonForkRepos)} label="non-forked repositories" />
 	</section>
 

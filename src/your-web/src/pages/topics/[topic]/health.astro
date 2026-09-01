@@ -4,6 +4,7 @@ import ProvenanceDisclosure from '../../../components/ProvenanceDisclosure.astro
 import CommitChart from '../../../components/CommitChart.astro';
 import ActivityRanking from '../../../components/ActivityRanking.astro';
 import { getStaticTopicPaths, getTopic, healthSnapshot } from '../../../lib/topics';
+import { url } from '../../../lib/url';
 
 export function getStaticPaths() {
 	return getStaticTopicPaths();
@@ -19,9 +20,9 @@ const health = healthSnapshot.topics[topic.slug as keyof typeof healthSnapshot.t
 		<p class="text-op-sm uppercase tracking-wide" style="color:var(--op-text-muted)">〇 {topic.label} Vertical</p>
 		<h1 class="text-op-h1" style="color:var(--op-text)">How alive and healthy is it?</h1>
 		<nav class="flex gap-6 text-op-sm pt-2">
-			<a class="text-op-text-muted hover:text-op-blue-light" href={`/topics/${topic.slug}/`}>Landscape</a>
-			<a class="text-op-text-muted hover:text-op-blue-light" href={`/topics/${topic.slug}/community/`}>Community</a>
-			<a class="text-op-blue-light" href={`/topics/${topic.slug}/health/`}>Health &amp; Activity</a>
+			<a class="text-op-text-muted hover:text-op-blue-light" href={url(`/topics/${topic.slug}/`)}>Landscape</a>
+			<a class="text-op-text-muted hover:text-op-blue-light" href={url(`/topics/${topic.slug}/community/`)}>Community</a>
+			<a class="text-op-blue-light" href={url(`/topics/${topic.slug}/health/`)}>Health &amp; Activity</a>
 		</nav>
 	</section>
 
@@ -54,8 +55,8 @@ const health = healthSnapshot.topics[topic.slug as keyof typeof healthSnapshot.t
 			/>
 		</div>
 		<p class="text-op-sm mt-6" style="color:var(--op-text-muted)">
-			Per-project CHAOSS metrics (Project Viability, Community Activity) live on the
-			<a href={`/topics/${topic.slug}/`} class="text-op-blue-light hover:text-op-blue transition-colors">Landscape page</a>.
+			Per-project CHAOSS metrics (Project Viability) live on the
+			<a href={url(`/topics/${topic.slug}/`)} class="text-op-blue-light hover:text-op-blue transition-colors">Landscape page</a>.
 		</p>
 	</section>
 </Layout>

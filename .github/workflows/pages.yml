@@ -1,0 +1,63 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src/your-web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: src/your-web/package.json
+          cache: npm
+          cache-dependency-path: src/your-web/package-lock.json
+
+      - name: Install
+        run: npm ci
+
+      # scripts/fetch-data.mjs reads OPENPULSE_ENDPOINT / OPENPULSE_AUTH from
+      # .env — see CLAUDE.md "Architecture". Set these as repo secrets
+      # (Settings → Secrets and variables → Actions) to refresh the
+      # committed src/data/*.json snapshots on every deploy; skipped
+      # entirely if the secrets aren't set, so the site still deploys from
+      # whatever snapshot is already committed.
+      - name: Refresh data snapshot
+        if: ${{ secrets.OPENPULSE_ENDPOINT != '' }}
+        env:
+          OPENPULSE_ENDPOINT: ${{ secrets.OPENPULSE_ENDPOINT }}
+          OPENPULSE_AUTH: ${{ secrets.OPENPULSE_AUTH }}
+        run: npm run fetch-data
+
+      - name: Build
+        run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: src/your-web/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

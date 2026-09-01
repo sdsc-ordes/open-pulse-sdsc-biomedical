@@ -7,7 +7,9 @@ const BUILD_TIMESTAMP = new Date().toISOString();
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://sdsc-ordes.github.io',
+	// GitHub Pages project page — served from a subpath, not the domain root.
+	site: 'https://sdsc-ordes.github.io/open-pulse-sdsc-biomedical',
+	base: '/open-pulse-sdsc-biomedical',
 	vite: {
 		plugins: [tailwindcss()],
 		define: {

@@ -1,4 +1,6 @@
 ---
+import { url } from '../lib/url';
+
 interface Props {
 	slug: string;
 	label: string;
@@ -8,7 +10,7 @@ interface Props {
 const { slug, label, repoCount, fiveYearCommits } = Astro.props;
 ---
 
-<a href={`/topics/${slug}/`} class="block rounded-none border border-op-border bg-op-surface p-8 hover:border-op-blue transition-colors">
+<a href={url(`/topics/${slug}/`)} class="block rounded-none border border-op-border bg-op-surface p-8 hover:border-op-blue transition-colors">
 	<p class="text-op-h3" style="color:var(--op-text)">{label}</p>
 	<div class="mt-4 flex gap-8">
 		<div>
