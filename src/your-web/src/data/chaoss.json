@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-01T04:51:59.526Z",
+  "fetchedAt": "2026-09-01T06:40:26.969Z",
   "availableSlugs": [
     "contributors",
     "new_contributors",
@@ -14190,14 +14190,14 @@
         "is_time_based": true,
         "value": "89%",
         "label": "closed (last 1 year)",
-        "secondary": "17 closed of 19 PRs · 17 merged · 2 still open",
+        "secondary": "16 closed of 18 PRs · 16 merged · 2 still open",
         "headline_tone": null,
         "unification": null,
         "notes": "Closure ratio = closed / total. CHAOSS distinguishes *acceptance* (merged) from *closure* (closed without merge); the secondary line shows both so you can tell an active-reviewers project from a graveyard.",
         "series_unit": "events",
         "visual": {
           "kind": "donut",
-          "fraction": 0.8947368421052632,
+          "fraction": 0.8888888888888888,
           "tone": "info"
         },
         "examples": []
@@ -14548,14 +14548,14 @@
         "is_time_based": true,
         "value": "1",
         "label": "reviewed PRs (last 1 year)",
-        "secondary": "1 of 19 PRs (5%) had a non-bot review",
+        "secondary": "1 of 18 PRs (6%) had a non-bot review",
         "headline_tone": null,
         "unification": "PRs where **OpenSearch** `github-pull_enriched.num_review_comments > 0` — filter agg inside a windowed PR query.",
         "notes": "Counts PRs whose ``num_review_comments`` is positive — i.e. at least one review comment from a human. Pair with self_merge to read code-review culture.",
         "series_unit": "events",
         "visual": {
           "kind": "donut",
-          "fraction": 0.05263157894736842,
+          "fraction": 0.05555555555555555,
           "tone": "danger"
         },
         "examples": []

@@ -387,14 +387,14 @@ async function main() {
 	// ── 5. Summary (landing headline numbers) ─────────────────────────
 	// "Five years of growth" on the landing page is repo-count growth
 	// (ecosystem growth), not commit volume — that cut lives on each
-	// Vertical's own Health & Activity page instead. Cumulative count of
-	// non-fork repos, by createdAt, per calendar year.
+	// Vertical's own Health & Activity page instead. NEW (non-fork) repos
+	// created per calendar year, by createdAt — not cumulative.
 	const thisYear = new Date().getUTCFullYear();
 	const growthYears = Array.from({ length: 6 }, (_, i) => String(thisYear - 5 + i));
 	function repoGrowthSeries(repoList) {
 		return growthYears.map((year) => ({
 			year,
-			repos: repoList.filter((r) => r.createdAt && r.createdAt.slice(0, 4) <= year).length
+			repos: repoList.filter((r) => r.createdAt && r.createdAt.slice(0, 4) === year).length
 		}));
 	}
 

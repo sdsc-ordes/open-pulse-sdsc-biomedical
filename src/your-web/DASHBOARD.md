@@ -23,6 +23,14 @@ Post-launch feedback changed several things from the plan below (the plan text s
 - **Every metric name is a clickable link** to its real chaoss.community definition page, verified live (not URL-pattern-guessed) — including metrics Open Pulse doesn't compute, so "Under works" metrics are still referenceable.
 - CHAOSS metrics (models + additional list + Project Velocity) are now scoped to **active projects only** per section, consistent with the 365-day window.
 
+## Revision — 2026-09-02
+
+- Landing disclaimer now also states that each Vertical's work spans **many internal SDSC teams** (not one team per Vertical), and that every number on the site is a **build-time snapshot**, not live data.
+- **Landing growth chart is per-year new repos, not cumulative** — `summary.json` → `topics[].repoGrowthSeries` now counts repos by `createdAt` year exactly (`===`), not `<=` running total.
+- **Additional metrics pruned per review**: removed "Issue Age" (no matching Open Pulse metric at all), "Issues Active" / "Issues Closed" (real metrics, but every active repo returns 0 in the 365-day window — verified against `chaoss.json`, not just assumed). "Change Request Review Duration" renamed back to its real CHAOSS name, "Change Request Duration".
+- **Upstream Code Dependencies** is no longer a plain-value card — `UpstreamDependenciesCard.astro` is a full-width widget listing the actual dependency repo names (from the CHAOSS API's `examples` field), each linking to GitHub.
+- Confirmed a real coverage-gap class while investigating a missing repo (`sdsc-ordes/compass`): some repos exist in Neo4j only as a bare stub node (an `OWNS` edge and a `full_name`, no other properties — discovered via a fork/dependency reference, never actually crawled) and are absent from the op-collections GitHub index this dashboard's snapshot reads from. Not fixed here — flagged as a real Open Pulse data gap, referenced in the landing disclaimer's coverage note.
+
 ## Scope & audience
 
 - **Scope**: Swiss Data Science Center (SDSC) itself — a lab-cluster dashboard sliced by 5 internal topics: **Biomedical**, **Environmental**, **Energy**, **Digital Society**, **Large Infrastructure**.
