@@ -1,0 +1,25 @@
+---
+// Required on every data card (frontend-dev §7, openpulse-dark-theme §7.5).
+// One shared component — never bespoke per-section explanations.
+interface Props {
+	source: string;
+	method: string;
+	refresh: string;
+	caveats: string;
+}
+const { source, method, refresh, caveats } = Astro.props;
+---
+
+<details class="op-provenance">
+	<summary><span aria-hidden="true">ⓘ</span> How is this computed?</summary>
+	<dl>
+		<dt>Source</dt>
+		<dd class="mono">{source}</dd>
+		<dt>Method</dt>
+		<dd class="mono">{method}</dd>
+		<dt>Refresh</dt>
+		<dd>{refresh}</dd>
+		<dt>Caveats</dt>
+		<dd>{caveats}</dd>
+	</dl>
+</details>

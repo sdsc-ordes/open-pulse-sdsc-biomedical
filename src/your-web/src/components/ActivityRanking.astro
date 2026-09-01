@@ -1,0 +1,34 @@
+---
+// "Last 3 months" activity ranking — most to least active, zero-activity
+// projects excluded entirely (per the approved plan).
+import type { ActiveRepo } from '../lib/types';
+
+interface Props {
+	active: ActiveRepo[];
+}
+const { active } = Astro.props;
+const max = active.length ? active[0].commits : 1;
+---
+
+{
+	active.length === 0 ? (
+		<p class="text-op-sm rounded-none border border-op-border bg-op-surface p-6" style="color:var(--op-text-muted)">
+			No active projects in the last 90 days — quiet this quarter.
+		</p>
+	) : (
+		<ol class="space-y-3">
+			{active.map((r, i) => (
+				<li class="flex items-center gap-4">
+					<span class="text-op-sm mono w-6 text-right" style="color:var(--op-text-faint)">{i + 1}</span>
+					<a href={`https://github.com/${r.repo}`} class="text-op-sm text-op-blue-light hover:text-op-blue transition-colors w-56 truncate">
+						{r.repo.split('/')[1]}
+					</a>
+					<div class="flex-1 h-2 bg-op-surface-2 rounded overflow-hidden">
+						<div class="h-full bg-op-blue" style={`width:${Math.max(4, (r.commits / max) * 100)}%`} />
+					</div>
+					<span class="text-op-sm mono w-20 text-right" style="color:var(--op-text-2)">{r.commits} commits</span>
+				</li>
+			))}
+		</ol>
+	)
+}

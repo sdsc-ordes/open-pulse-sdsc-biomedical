@@ -1,0 +1,173 @@
+{
+  "fetchedAt": "2026-09-01T04:51:59.526Z",
+  "method": "hand-classified, confirmed interactively — see DASHBOARD.md",
+  "topics": [
+    {
+      "slug": "biomedical",
+      "label": "Biomedical"
+    },
+    {
+      "slug": "environmental",
+      "label": "Environmental"
+    },
+    {
+      "slug": "energy",
+      "label": "Energy"
+    },
+    {
+      "slug": "digital-society",
+      "label": "Digital Society"
+    },
+    {
+      "slug": "large-infrastructure",
+      "label": "Large Infrastructure"
+    }
+  ],
+  "map": {
+    "deid-module": [
+      "biomedical"
+    ],
+    "demo-biomedit-workflow": [
+      "biomedical"
+    ],
+    "didc-pdf-parser": [
+      "biomedical"
+    ],
+    "imaging-plaza": [
+      "biomedical",
+      "large-infrastructure"
+    ],
+    "imaging-plaza-fair-indicator-api": [
+      "biomedical",
+      "large-infrastructure"
+    ],
+    "imaging-plaza-ontology": [
+      "biomedical",
+      "large-infrastructure"
+    ],
+    "imaging-plaza-search": [
+      "biomedical",
+      "large-infrastructure"
+    ],
+    "imaging-plaza-webapp": [
+      "biomedical",
+      "large-infrastructure"
+    ],
+    "modos-api": [
+      "biomedical"
+    ],
+    "modos-poster": [
+      "biomedical"
+    ],
+    "modos-schema": [
+      "biomedical"
+    ],
+    "nds-lucid-dashboard": [
+      "biomedical",
+      "large-infrastructure"
+    ],
+    "nds-lucid-graphdb-loader": [
+      "biomedical",
+      "large-infrastructure"
+    ],
+    "nds-lucid-graphdb-syncer": [
+      "biomedical",
+      "large-infrastructure"
+    ],
+    "nds-lucid-ingestion": [
+      "biomedical",
+      "large-infrastructure"
+    ],
+    "nds-lucid-web-app": [
+      "biomedical",
+      "large-infrastructure"
+    ],
+    "refget-cloud": [
+      "biomedical"
+    ],
+    "digiwild": [
+      "environmental"
+    ],
+    "mava-api": [
+      "environmental"
+    ],
+    "mava-exchange": [
+      "environmental"
+    ],
+    "saving-willy": [
+      "environmental",
+      "large-infrastructure"
+    ],
+    "osm-geotiff": [
+      "environmental"
+    ],
+    "digiplant": [
+      "environmental"
+    ],
+    "bedretto-ontology": [
+      "energy",
+      "large-infrastructure"
+    ],
+    "wedowind": [
+      "energy",
+      "large-infrastructure"
+    ],
+    "arema-ontology": [
+      "energy"
+    ],
+    "debates-analytics": [
+      "digital-society"
+    ],
+    "debates-app": [
+      "digital-society"
+    ],
+    "debates-solr": [
+      "digital-society"
+    ],
+    "debates-ui": [
+      "digital-society"
+    ],
+    "dt-political-debates": [
+      "digital-society"
+    ],
+    "oss-catalog": [
+      "digital-society"
+    ],
+    "publiccode-editor": [
+      "digital-society"
+    ],
+    "govtech-hackathon-publiccode.yml": [
+      "digital-society"
+    ],
+    "odtp-unog-digitalrecordings-scrapper": [
+      "digital-society"
+    ],
+    "pxRRead": [
+      "digital-society"
+    ],
+    "catplus-chembord": [
+      "large-infrastructure"
+    ],
+    "catplus-converters": [
+      "large-infrastructure"
+    ],
+    "catplus-docs": [
+      "large-infrastructure"
+    ],
+    "catplus-ontology": [
+      "large-infrastructure"
+    ],
+    "ordfts-hackathon-pneuma-rdi-hub": [
+      "large-infrastructure"
+    ],
+    "ordfts-hackathon-vehicles-detection": [
+      "large-infrastructure"
+    ]
+  },
+  "uncertain": [
+    "arema-ontology",
+    "digiplant",
+    "ordfts-hackathon-vehicles-detection",
+    "osm-geotiff"
+  ]
+}

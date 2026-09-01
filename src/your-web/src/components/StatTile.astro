@@ -1,0 +1,14 @@
+---
+interface Props {
+	value: string;
+	label: string;
+	href?: string;
+}
+const { value, label, href } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag href={href} class="block rounded-none border border-op-border bg-op-surface p-6 hover:border-op-blue transition-colors">
+	<p class="text-op-h2" style="color:var(--op-text)">{value}</p>
+	<p class="text-op-sm mt-1" style="color:var(--op-text-muted)">{label}</p>
+</Tag>

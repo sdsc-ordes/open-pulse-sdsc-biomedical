@@ -1,0 +1,32 @@
+---
+const ORGS = [
+	{ label: 'sdsc-ordes', url: 'https://github.com/sdsc-ordes' },
+	{ label: 'sdsc-innovation', url: 'https://github.com/sdsc-innovation' }
+];
+---
+
+<footer class="bg-op-footer-bg border-t" style="border-color:var(--op-footer-border)">
+	<div class="max-w-7xl mx-auto px-6 py-10 grid gap-8 sm:grid-cols-2">
+		<div>
+			<p class="text-op-h4" style="color:var(--op-text)">Swiss Data Science Center</p>
+			<p class="text-op-sm mt-2 max-w-md" style="color:var(--op-text-muted)">
+				A project dashboard built on the Open Pulse platform, covering SDSC's public GitHub work across five research
+				topics.
+			</p>
+		</div>
+		<div>
+			<p class="text-op-caps uppercase tracking-wide" style="color:var(--op-text-faint)">GitHub organisations</p>
+			<ul class="mt-2 space-y-1">
+				{
+					ORGS.map((o) => (
+						<li>
+							<a href={o.url} class="text-op-sm text-op-blue-light hover:text-op-blue transition-colors">
+								{o.label} →
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</footer>

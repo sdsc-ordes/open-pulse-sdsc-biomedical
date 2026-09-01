@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProvenanceDisclosure from '../components/ProvenanceDisclosure.astro';
+import ChaossMetricsExplorer from '../components/ChaossMetricsExplorer.astro';
+import RepoTable from '../components/RepoTable.astro';
+import { getCrossCuttingRepos, splitActiveArchive } from '../lib/topics';
+
+const repos = getCrossCuttingRepos().sort((a, b) => b.stars - a.stars);
+const languages = [...new Set(repos.map((r) => r.language).filter(Boolean))] as string[];
+const { active, archive } = splitActiveArchive(repos);
+---
+
+<Layout title="Cross-cutting tooling">
+	<section class="max-w-7xl mx-auto px-6 py-12 space-y-4">
+		<p class="text-op-sm uppercase tracking-wide" style="color:var(--op-text-muted)">〇 Not scoped to one Vertical</p>
+		<h1 class="text-op-h1" style="color:var(--op-text)">Cross-cutting tooling</h1>
+		<p class="text-op-lg max-w-3xl" style="color:var(--op-text-2)">
+			{repos.length} repositories, {languages.length} languages — {active.length} active in the last year,{' '}
+			{archive.length} archived. Real SDSC output — repository templates, workshop material, generic RDF/semantic
+			tooling, and the open-pulse-* family that powers this dashboard itself — that doesn't belong to one of the five
+			Verticals specifically.
+		</p>
+	</section>
+
+	<section class="max-w-7xl mx-auto px-6 py-8">
+		<h2 class="text-op-h3" style="color:var(--op-text)">Active projects</h2>
+		<p class="text-op-sm mt-1 mb-4" style="color:var(--op-text-muted)">At least one commit in the last 365 days. Click a column to sort.</p>
+		<RepoTable id="active-cross-cutting" repos={active} emptyText="Nothing here had a commit in the last year." />
+		<ProvenanceDisclosure
+			source="GitHub API (op-collections github_repos) + GrimoireLab / OpenSearch"
+			method="Direct query — People from GitHub's contributor list, Last commit from a commit_date max aggregation"
+			refresh="Baked at build time from the latest hub collection snapshot"
+			caveats="Everything here has zero Vertical tags by construction — it's here because it wasn't confidently classified into one of the five, not because it's less real SDSC work."
+		/>
+	</section>
+
+	<section class="max-w-7xl mx-auto px-6 py-8 pb-16">
+		<p class="text-op-sm uppercase tracking-wide" style="color:var(--op-text-muted)">〇 CHAOSS metrics</p>
+		<h2 class="text-op-h2 mt-2" style="color:var(--op-text)">Project viability, last 365 days</h2>
+		<p class="text-op-md mt-2 max-w-2xl" style="color:var(--op-text-2)">
+			Active projects only. Toggle projects to compare only the ones you care about.
+		</p>
+		<div class="mt-8">
+			<ChaossMetricsExplorer projects={active} />
+		</div>
+	</section>
+
+	<section class="max-w-7xl mx-auto px-6 py-8 pb-16">
+		<h2 class="text-op-h3" style="color:var(--op-text)">Archived projects</h2>
+		<p class="text-op-sm mt-1 mb-4" style="color:var(--op-text-muted)">No commit in over a year — dormant, not deleted. Click a column to sort.</p>
+		<RepoTable id="archive-cross-cutting" repos={archive} emptyText="Nothing here has gone dormant." />
+	</section>
+</Layout>

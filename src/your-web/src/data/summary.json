@@ -1,0 +1,314 @@
+{
+  "fetchedAt": "2026-09-01T04:51:59.526Z",
+  "totalRepos": 96,
+  "totalNonForkRepos": 88,
+  "totalContributors": 145,
+  "crossCuttingCount": 54,
+  "orgSplit": [
+    {
+      "owner": "sdsc-ordes",
+      "repos": 91
+    },
+    {
+      "owner": "sdsc-innovation",
+      "repos": 5
+    }
+  ],
+  "topics": [
+    {
+      "slug": "biomedical",
+      "label": "Biomedical",
+      "color": "#60a5fa",
+      "repoCount": 17,
+      "fiveYearCommits": 2750,
+      "fiveYearSeries": [
+        {
+          "year": "2021",
+          "commits": 0
+        },
+        {
+          "year": "2022",
+          "commits": 75
+        },
+        {
+          "year": "2023",
+          "commits": 178
+        },
+        {
+          "year": "2024",
+          "commits": 998
+        },
+        {
+          "year": "2025",
+          "commits": 1287
+        },
+        {
+          "year": "2026",
+          "commits": 212
+        }
+      ],
+      "repoGrowthSeries": [
+        {
+          "year": "2021",
+          "repos": 0
+        },
+        {
+          "year": "2022",
+          "repos": 1
+        },
+        {
+          "year": "2023",
+          "repos": 5
+        },
+        {
+          "year": "2024",
+          "repos": 9
+        },
+        {
+          "year": "2025",
+          "repos": 15
+        },
+        {
+          "year": "2026",
+          "repos": 16
+        }
+      ]
+    },
+    {
+      "slug": "environmental",
+      "label": "Environmental",
+      "color": "#4ade80",
+      "repoCount": 6,
+      "fiveYearCommits": 1119,
+      "fiveYearSeries": [
+        {
+          "year": "2021",
+          "commits": 0
+        },
+        {
+          "year": "2022",
+          "commits": 0
+        },
+        {
+          "year": "2023",
+          "commits": 3
+        },
+        {
+          "year": "2024",
+          "commits": 334
+        },
+        {
+          "year": "2025",
+          "commits": 578
+        },
+        {
+          "year": "2026",
+          "commits": 204
+        }
+      ],
+      "repoGrowthSeries": [
+        {
+          "year": "2021",
+          "repos": 0
+        },
+        {
+          "year": "2022",
+          "repos": 0
+        },
+        {
+          "year": "2023",
+          "repos": 1
+        },
+        {
+          "year": "2024",
+          "repos": 4
+        },
+        {
+          "year": "2025",
+          "repos": 5
+        },
+        {
+          "year": "2026",
+          "repos": 6
+        }
+      ]
+    },
+    {
+      "slug": "energy",
+      "label": "Energy",
+      "color": "#fbbf24",
+      "repoCount": 3,
+      "fiveYearCommits": 609,
+      "fiveYearSeries": [
+        {
+          "year": "2021",
+          "commits": 0
+        },
+        {
+          "year": "2022",
+          "commits": 0
+        },
+        {
+          "year": "2023",
+          "commits": 0
+        },
+        {
+          "year": "2024",
+          "commits": 0
+        },
+        {
+          "year": "2025",
+          "commits": 508
+        },
+        {
+          "year": "2026",
+          "commits": 101
+        }
+      ],
+      "repoGrowthSeries": [
+        {
+          "year": "2021",
+          "repos": 0
+        },
+        {
+          "year": "2022",
+          "repos": 0
+        },
+        {
+          "year": "2023",
+          "repos": 0
+        },
+        {
+          "year": "2024",
+          "repos": 0
+        },
+        {
+          "year": "2025",
+          "repos": 3
+        },
+        {
+          "year": "2026",
+          "repos": 3
+        }
+      ]
+    },
+    {
+      "slug": "digital-society",
+      "label": "Digital Society",
+      "color": "#f472b6",
+      "repoCount": 10,
+      "fiveYearCommits": 1396,
+      "fiveYearSeries": [
+        {
+          "year": "2021",
+          "commits": 0
+        },
+        {
+          "year": "2022",
+          "commits": 0
+        },
+        {
+          "year": "2023",
+          "commits": 182
+        },
+        {
+          "year": "2024",
+          "commits": 780
+        },
+        {
+          "year": "2025",
+          "commits": 377
+        },
+        {
+          "year": "2026",
+          "commits": 57
+        }
+      ],
+      "repoGrowthSeries": [
+        {
+          "year": "2021",
+          "repos": 0
+        },
+        {
+          "year": "2022",
+          "repos": 0
+        },
+        {
+          "year": "2023",
+          "repos": 1
+        },
+        {
+          "year": "2024",
+          "repos": 6
+        },
+        {
+          "year": "2025",
+          "repos": 7
+        },
+        {
+          "year": "2026",
+          "repos": 8
+        }
+      ]
+    },
+    {
+      "slug": "large-infrastructure",
+      "label": "Large Infrastructure",
+      "color": "#a78bfa",
+      "repoCount": 19,
+      "fiveYearCommits": 3498,
+      "fiveYearSeries": [
+        {
+          "year": "2021",
+          "commits": 0
+        },
+        {
+          "year": "2022",
+          "commits": 0
+        },
+        {
+          "year": "2023",
+          "commits": 38
+        },
+        {
+          "year": "2024",
+          "commits": 601
+        },
+        {
+          "year": "2025",
+          "commits": 2760
+        },
+        {
+          "year": "2026",
+          "commits": 99
+        }
+      ],
+      "repoGrowthSeries": [
+        {
+          "year": "2021",
+          "repos": 0
+        },
+        {
+          "year": "2022",
+          "repos": 0
+        },
+        {
+          "year": "2023",
+          "repos": 2
+        },
+        {
+          "year": "2024",
+          "repos": 10
+        },
+        {
+          "year": "2025",
+          "repos": 18
+        },
+        {
+          "year": "2026",
+          "repos": 19
+        }
+      ]
+    }
+  ]
+}

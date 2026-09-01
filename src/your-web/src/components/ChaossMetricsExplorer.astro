@@ -1,0 +1,101 @@
+---
+// Renders the OSS Project Viability Starter CHAOSS model (all windowed to
+// the trailing 365 days — see scripts/fetch-data.mjs), a curated set of
+// additional metrics, and a Project Velocity scatter plot, for a set of
+// projects with a shared toggleable project legend.
+import { CHAOSS_MODELS, EXTRA_METRICS } from '../lib/chaoss-models';
+import MetricCard from './MetricCard.astro';
+import ProjectVelocityChart from './ProjectVelocityChart.astro';
+import UpstreamDependenciesCard from './UpstreamDependenciesCard.astro';
+import type { Repo } from '../lib/types';
+
+interface Props {
+	projects: Repo[];
+}
+const { projects } = Astro.props;
+const keyOf = (p: Repo) => `${p.owner}/${p.name}`;
+---
+
+<div class="op-chaoss-explorer space-y-10">
+	<div>
+		<p class="text-op-caps uppercase tracking-wide" style="color:var(--op-text-faint)">Toggle projects</p>
+		<div class="mt-3 flex flex-wrap gap-2">
+			{
+				projects.map((p) => (
+					<label class="flex items-center gap-1.5 rounded px-2.5 py-1 text-op-sm cursor-pointer border border-op-border bg-op-surface-2">
+						<input type="checkbox" checked class="op-project-toggle accent-op-blue" data-project={keyOf(p)} />
+						<span style="color:var(--op-text-2)">{p.name}</span>
+					</label>
+				))
+			}
+		</div>
+	</div>
+
+	{
+		CHAOSS_MODELS.map((model) => (
+			<section>
+				<div class="flex items-baseline justify-between gap-4 flex-wrap">
+					<h3 class="text-op-h3" style="color:var(--op-text)">{model.title}</h3>
+					<a href={model.url} class="text-op-sm text-op-blue-light hover:text-op-blue transition-colors" target="_blank" rel="noopener">
+						CHAOSS reference →
+					</a>
+				</div>
+				<p class="text-op-sm mt-1 max-w-2xl" style="color:var(--op-text-muted)">{model.description}</p>
+				<div class="mt-6 grid md:grid-cols-2 gap-4">
+					{model.metrics.map((metric) => (
+						<MetricCard metric={metric} projects={projects} />
+					))}
+				</div>
+			</section>
+		))
+	}
+
+	<section>
+		<h3 class="text-op-h3" style="color:var(--op-text)">Additional metrics</h3>
+		<p class="text-op-sm mt-1 max-w-2xl" style="color:var(--op-text-muted)">
+			Individually useful CHAOSS metrics beyond the model above, also windowed to the trailing 365 days.
+		</p>
+		<div class="mt-6 grid md:grid-cols-2 gap-4">
+			{EXTRA_METRICS.map((metric) => <MetricCard metric={metric} projects={projects} />)}
+		</div>
+	</section>
+
+	<section>
+		<p class="text-op-sm mt-1 max-w-2xl mb-6" style="color:var(--op-text-muted)">
+			What each project builds on — resolved from dependency manifests into the graph.
+		</p>
+		<UpstreamDependenciesCard projects={projects} />
+	</section>
+
+	<section>
+		<div class="flex items-baseline justify-between gap-4 flex-wrap">
+			<h3 class="text-op-h3" style="color:var(--op-text)">Project Velocity</h3>
+			<a href="https://chaoss.community/kb/metric-project-velocity/" class="text-op-sm text-op-blue-light hover:text-op-blue transition-colors" target="_blank" rel="noopener">
+				CHAOSS reference →
+			</a>
+		</div>
+		<p class="text-op-sm mt-1 max-w-2xl" style="color:var(--op-text-muted)">
+			A composite metric — code changes, issues closed, reviews, and committer count as an indicator of development
+			intensity — rebuilt as the scatter plot CHAOSS itself describes: each dot is a project, sized by committer count.
+		</p>
+		<div class="mt-6 rounded-none border border-op-border bg-op-surface p-6">
+			<ProjectVelocityChart projects={projects} />
+		</div>
+	</section>
+</div>
+
+<script>
+	function wireToggles(root: Element) {
+		root.querySelectorAll('.op-project-toggle').forEach((cb) => {
+			cb.addEventListener('change', () => {
+				const input = cb as HTMLInputElement;
+				const key = input.dataset.project;
+				root.querySelectorAll(`[data-project="${CSS.escape(key || '')}"]`).forEach((el) => {
+					if (el.tagName === 'INPUT') return;
+					(el as HTMLElement).style.display = input.checked ? '' : 'none';
+				});
+			});
+		});
+	}
+	document.querySelectorAll('.op-chaoss-explorer').forEach(wireToggles);
+</script>

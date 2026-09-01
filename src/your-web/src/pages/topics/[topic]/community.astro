@@ -1,0 +1,94 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ProvenanceDisclosure from '../../../components/ProvenanceDisclosure.astro';
+import { getStaticTopicPaths, getTopic, getTopicRepos, partnersSnapshot } from '../../../lib/topics';
+
+export function getStaticPaths() {
+	return getStaticTopicPaths();
+}
+
+const { topic: slug } = Astro.params;
+const topic = getTopic(slug!);
+const repos = getTopicRepos(topic.slug as any);
+const orgCounts = partnersSnapshot.orgSplit
+	.map((o) => ({ owner: o.owner, repos: repos.filter((r) => r.owner === o.owner).length }))
+	.filter((o) => o.repos > 0);
+const maxInstitution = partnersSnapshot.institutions[0]?.people || 1;
+const showsSwissLink = repos.some((r) => partnersSnapshot.swissGovtechPartner.repos.some((n) => r.name === n) || r.forkOf?.includes('/swiss/'));
+---
+
+<Layout title={`${topic.label} — Community`}>
+	<section class="max-w-7xl mx-auto px-6 py-12 space-y-4">
+		<p class="text-op-sm uppercase tracking-wide" style="color:var(--op-text-muted)">〇 {topic.label} Vertical</p>
+		<h1 class="text-op-h1" style="color:var(--op-text)">Who's behind it?</h1>
+		<nav class="flex gap-6 text-op-sm pt-2">
+			<a class="text-op-text-muted hover:text-op-blue-light" href={`/topics/${topic.slug}/`}>Landscape</a>
+			<a class="text-op-blue-light" href={`/topics/${topic.slug}/community/`}>Community</a>
+			<a class="text-op-text-muted hover:text-op-blue-light" href={`/topics/${topic.slug}/health/`}>Health &amp; Activity</a>
+		</nav>
+	</section>
+
+	<section class="max-w-7xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-8">
+		<div class="rounded-none border border-op-border bg-op-surface p-8">
+			<h2 class="text-op-h4" style="color:var(--op-text)">SDSC organisation split</h2>
+			<div class="mt-6 space-y-4">
+				{orgCounts.map((o) => (
+					<div>
+						<div class="flex justify-between text-op-sm mb-1">
+							<span style="color:var(--op-text-2)" class="mono">{o.owner}</span>
+							<span style="color:var(--op-text-muted)">{o.repos} repos</span>
+						</div>
+						<div class="h-2 bg-op-surface-2 rounded overflow-hidden">
+							<div class="h-full bg-op-blue" style={`width:${(o.repos / repos.length) * 100}%`} />
+						</div>
+					</div>
+				))}
+			</div>
+			<ProvenanceDisclosure
+				source="GitHub API (op-collections github_repos)"
+				method="Direct query — grouped by owner"
+				refresh="Baked at build time"
+				caveats="Limited to the two known SDSC GitHub organisations; project work under partner-institution orgs isn't counted here."
+			/>
+		</div>
+
+		<div class="rounded-none border border-op-border bg-op-surface p-8">
+			<h2 class="text-op-h4" style="color:var(--op-text)">Contributor institutions (org-wide)</h2>
+			<p class="text-op-sm mt-2" style="color:var(--op-text-muted)">
+				Affiliation of everyone who has contributed to any SDSC repository — the cleanest signal for "partner
+				institutions", since raw dependency/fork graphs mostly surface generic open-source libraries.
+			</p>
+			<ol class="mt-6 space-y-2">
+				{partnersSnapshot.institutions.slice(0, 10).map((i) => (
+					<li class="flex items-center gap-3">
+						<span class="text-op-sm w-40 truncate" style="color:var(--op-text-2)">{i.institution}</span>
+						<div class="flex-1 h-2 bg-op-surface-2 rounded overflow-hidden">
+							<div class="h-full bg-op-blue-light" style={`width:${(i.people / maxInstitution) * 100}%`} />
+						</div>
+						<span class="text-op-sm mono w-6 text-right" style="color:var(--op-text-muted)">{i.people}</span>
+					</li>
+				))}
+			</ol>
+			<ProvenanceDisclosure
+				source="Neo4j (property graph)"
+				method="Graph crawler — AFFILIATED_WITH (ROR) via CONTRIBUTES_TO"
+				refresh="Baked at build time from the latest graph snapshot"
+				caveats="Org-wide, not filtered to this Vertical's repos — Neo4j edges carry no per-repo affiliation breakdown."
+			/>
+		</div>
+	</section>
+
+	{
+		showsSwissLink && (
+			<section class="max-w-7xl mx-auto px-6 pb-16">
+				<div class="rounded-none bg-op-blue-pale p-8">
+					<p class="text-op-sm uppercase tracking-wide" style="color:var(--op-text-muted)">〇 Linked partner project</p>
+					<p class="text-op-md mt-2" style="color:var(--op-text-2)">
+						This Vertical includes a repo forked from or shared with the <span class="mono">swiss</span> govtech GitHub
+						organisation — one of the few genuine cross-organisation project links found in the graph.
+					</p>
+				</div>
+			</section>
+		)
+	}
+</Layout>

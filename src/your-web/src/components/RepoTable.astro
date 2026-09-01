@@ -1,0 +1,114 @@
+---
+// A sortable repo catalogue table — click a column header to sort by it,
+// click again to reverse. Used for both the "active" and "archive" tables
+// on a Vertical / cross-cutting-tooling page.
+import type { Repo, TopicSlug } from '../lib/types';
+
+interface Props {
+	id: string;
+	repos: Repo[];
+	currentTopicSlug?: TopicSlug;
+	emptyText?: string;
+}
+const { id, repos, currentTopicSlug, emptyText = 'None.' } = Astro.props;
+const fmtDate = (iso: string | null) => (iso ? iso.slice(0, 10) : '—');
+
+const COLUMNS: { key: string; label: string; type: 'string' | 'number' | 'date'; align?: 'right' }[] = [
+	{ key: 'name', label: 'Repository', type: 'string' },
+	{ key: 'language', label: 'Language', type: 'string' },
+	{ key: 'license', label: 'License', type: 'string' },
+	{ key: 'stars', label: 'Stars', type: 'number', align: 'right' },
+	{ key: 'people', label: 'People', type: 'number', align: 'right' },
+	{ key: 'lastCommit', label: 'Last commit', type: 'date', align: 'right' }
+];
+---
+
+{
+	repos.length === 0 ? (
+		<p class="text-op-sm" style="color:var(--op-text-muted)">{emptyText}</p>
+	) : (
+		<div class="op-sortable-table rounded-none border border-op-border overflow-x-auto" id={id}>
+			<table class="w-full">
+				<thead class="bg-op-surface-2">
+					<tr>
+						{COLUMNS.map((c) => (
+							<th
+								data-key={c.key}
+								data-type={c.type}
+								class={`px-4 py-3 text-op-sm font-semibold uppercase tracking-wide cursor-pointer select-none whitespace-nowrap ${c.align === 'right' ? 'text-right' : 'text-left'}`}
+								style="color:var(--op-text-muted)"
+							>
+								{c.label} <span class="op-sort-indicator text-op-text-faint">↕</span>
+							</th>
+						))}
+					</tr>
+				</thead>
+				<tbody class="bg-op-surface">
+					{repos.map((r) => (
+						<tr
+							class="border-t border-op-border"
+							data-name={`${r.owner}/${r.name}`.toLowerCase()}
+							data-language={(r.language || '').toLowerCase()}
+							data-license={(r.license || '').toLowerCase()}
+							data-stars={r.stars}
+							data-people={r.contributorsCount}
+							data-last-commit={r.lastCommit || ''}
+						>
+							<td class="px-4 py-3 text-op-md">
+								<a href={r.url} class="text-op-blue-light hover:text-op-blue transition-colors">{r.owner}/{r.name}</a>
+								{r.isFork && <span class="ml-2 text-op-micro uppercase tracking-wide" style="color:var(--op-text-faint)">fork</span>}
+								{currentTopicSlug && r.topics.length > 1 && (
+									<span class="ml-2 text-op-micro uppercase tracking-wide" style="color:var(--op-text-faint)">
+										+{r.topics.filter((t) => t !== currentTopicSlug).length} other vertical
+									</span>
+								)}
+								{r.description && <p class="text-op-sm mt-1" style="color:var(--op-text-muted)">{r.description}</p>}
+							</td>
+							<td class="px-4 py-3 text-op-sm" style="color:var(--op-text-2)">{r.language || '—'}</td>
+							<td class="px-4 py-3 text-op-sm mono" style="color:var(--op-text-2)">{r.license || '—'}</td>
+							<td class="px-4 py-3 text-op-sm mono text-right" style="color:var(--op-text-2)">{r.stars}</td>
+							<td class="px-4 py-3 text-op-sm mono text-right" style="color:var(--op-text-2)">{r.contributorsCount}</td>
+							<td class="px-4 py-3 text-op-sm mono text-right" style="color:var(--op-text-2)">{fmtDate(r.lastCommit)}</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
+	)
+}
+
+<script>
+	function wireSortable(table: Element) {
+		const thead = table.querySelector('thead');
+		const tbody = table.querySelector('tbody');
+		if (!thead || !tbody) return;
+
+		let currentKey: string | null = null;
+		let ascending = true;
+
+		thead.querySelectorAll('th[data-key]').forEach((th) => {
+			th.addEventListener('click', () => {
+				const key = (th as HTMLElement).dataset.key!;
+				const type = (th as HTMLElement).dataset.type!;
+				ascending = currentKey === key ? !ascending : true;
+				currentKey = key;
+
+				thead.querySelectorAll('.op-sort-indicator').forEach((el) => (el.textContent = '↕'));
+				th.querySelector('.op-sort-indicator')!.textContent = ascending ? '↑' : '↓';
+
+				const attr = `data-${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+				const rows = [...tbody.querySelectorAll('tr')];
+				rows.sort((a, b) => {
+					const av = a.getAttribute(attr) || '';
+					const bv = b.getAttribute(attr) || '';
+					let cmp: number;
+					if (type === 'number') cmp = parseFloat(av || '0') - parseFloat(bv || '0');
+					else cmp = av.localeCompare(bv);
+					return ascending ? cmp : -cmp;
+				});
+				rows.forEach((r) => tbody.appendChild(r));
+			});
+		});
+	}
+	document.querySelectorAll('.op-sortable-table').forEach(wireSortable);
+</script>

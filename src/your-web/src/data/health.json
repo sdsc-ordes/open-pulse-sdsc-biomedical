@@ -1,0 +1,200 @@
+{
+  "fetchedAt": "2026-09-01T04:51:59.526Z",
+  "topics": {
+    "biomedical": {
+      "repoCount": 17,
+      "nonForkRepoCount": 16,
+      "fiveYearSeries": [
+        {
+          "year": "2021",
+          "commits": 0
+        },
+        {
+          "year": "2022",
+          "commits": 75
+        },
+        {
+          "year": "2023",
+          "commits": 178
+        },
+        {
+          "year": "2024",
+          "commits": 998
+        },
+        {
+          "year": "2025",
+          "commits": 1287
+        },
+        {
+          "year": "2026",
+          "commits": 212
+        }
+      ],
+      "last90Days": [
+        {
+          "repo": "sdsc-ordes/modos-api",
+          "commits": 62
+        },
+        {
+          "repo": "sdsc-ordes/deid-module",
+          "commits": 32
+        },
+        {
+          "repo": "sdsc-ordes/imaging-plaza-webapp",
+          "commits": 25
+        },
+        {
+          "repo": "sdsc-ordes/imaging-plaza",
+          "commits": 1
+        }
+      ]
+    },
+    "environmental": {
+      "repoCount": 6,
+      "nonForkRepoCount": 6,
+      "fiveYearSeries": [
+        {
+          "year": "2021",
+          "commits": 0
+        },
+        {
+          "year": "2022",
+          "commits": 0
+        },
+        {
+          "year": "2023",
+          "commits": 3
+        },
+        {
+          "year": "2024",
+          "commits": 334
+        },
+        {
+          "year": "2025",
+          "commits": 578
+        },
+        {
+          "year": "2026",
+          "commits": 204
+        }
+      ],
+      "last90Days": [
+        {
+          "repo": "sdsc-ordes/mava-exchange",
+          "commits": 60
+        }
+      ]
+    },
+    "energy": {
+      "repoCount": 3,
+      "nonForkRepoCount": 3,
+      "fiveYearSeries": [
+        {
+          "year": "2021",
+          "commits": 0
+        },
+        {
+          "year": "2022",
+          "commits": 0
+        },
+        {
+          "year": "2023",
+          "commits": 0
+        },
+        {
+          "year": "2024",
+          "commits": 0
+        },
+        {
+          "year": "2025",
+          "commits": 508
+        },
+        {
+          "year": "2026",
+          "commits": 101
+        }
+      ],
+      "last90Days": [
+        {
+          "repo": "sdsc-ordes/wedowind",
+          "commits": 25
+        }
+      ]
+    },
+    "digital-society": {
+      "repoCount": 10,
+      "nonForkRepoCount": 8,
+      "fiveYearSeries": [
+        {
+          "year": "2021",
+          "commits": 0
+        },
+        {
+          "year": "2022",
+          "commits": 0
+        },
+        {
+          "year": "2023",
+          "commits": 182
+        },
+        {
+          "year": "2024",
+          "commits": 780
+        },
+        {
+          "year": "2025",
+          "commits": 377
+        },
+        {
+          "year": "2026",
+          "commits": 57
+        }
+      ],
+      "last90Days": []
+    },
+    "large-infrastructure": {
+      "repoCount": 19,
+      "nonForkRepoCount": 19,
+      "fiveYearSeries": [
+        {
+          "year": "2021",
+          "commits": 0
+        },
+        {
+          "year": "2022",
+          "commits": 0
+        },
+        {
+          "year": "2023",
+          "commits": 38
+        },
+        {
+          "year": "2024",
+          "commits": 601
+        },
+        {
+          "year": "2025",
+          "commits": 2760
+        },
+        {
+          "year": "2026",
+          "commits": 99
+        }
+      ],
+      "last90Days": [
+        {
+          "repo": "sdsc-ordes/imaging-plaza-webapp",
+          "commits": 25
+        },
+        {
+          "repo": "sdsc-ordes/wedowind",
+          "commits": 25
+        },
+        {
+          "repo": "sdsc-ordes/imaging-plaza",
+          "commits": 1
+        }
+      ]
+    }
+  }
+}

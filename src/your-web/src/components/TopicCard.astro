@@ -1,0 +1,24 @@
+---
+interface Props {
+	slug: string;
+	label: string;
+	repoCount: number;
+	fiveYearCommits: number;
+}
+const { slug, label, repoCount, fiveYearCommits } = Astro.props;
+---
+
+<a href={`/topics/${slug}/`} class="block rounded-none border border-op-border bg-op-surface p-8 hover:border-op-blue transition-colors">
+	<p class="text-op-h3" style="color:var(--op-text)">{label}</p>
+	<div class="mt-4 flex gap-8">
+		<div>
+			<p class="text-op-h4 mono" style="color:var(--op-blue-light)">{repoCount}</p>
+			<p class="text-op-micro uppercase tracking-wide" style="color:var(--op-text-faint)">repos</p>
+		</div>
+		<div>
+			<p class="text-op-h4 mono" style="color:var(--op-blue-light)">{fiveYearCommits.toLocaleString()}</p>
+			<p class="text-op-micro uppercase tracking-wide" style="color:var(--op-text-faint)">commits, 5yr</p>
+		</div>
+	</div>
+	<p class="text-op-sm mt-4 text-op-blue-light">Explore →</p>
+</a>

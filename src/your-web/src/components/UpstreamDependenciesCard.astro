@@ -1,0 +1,73 @@
+---
+// Upstream Code Dependencies gets its own full-width widget (rather than a
+// plain-value card) so the actual dependency names are visible, not just a
+// count. https://chaoss.community/kb/metric-upstream-code-dependencies/
+import { getRepoMetric, getMetricInfo } from '../lib/topics';
+import type { Repo } from '../lib/types';
+
+interface Props {
+	projects: Repo[];
+}
+const { projects } = Astro.props;
+const keyOf = (p: Repo) => `${p.owner}/${p.name}`;
+const info = getMetricInfo('upstream_dependencies');
+---
+
+<div class="rounded-none border border-op-border bg-op-surface p-6">
+	<div class="flex items-center justify-between gap-2">
+		<a
+			href="https://chaoss.community/kb/metric-upstream-code-dependencies/"
+			class="text-op-h4 text-op-blue-light hover:text-op-blue transition-colors"
+			target="_blank"
+			rel="noopener"
+		>
+			Upstream Code Dependencies
+		</a>
+		{
+			info && (
+				<details class="op-metric-info">
+					<summary aria-label="How is Upstream Code Dependencies computed?" class="cursor-pointer select-none text-op-sm" style="color:var(--op-text-faint)">
+						ⓘ
+					</summary>
+					<div class="mt-2 text-op-micro leading-relaxed max-w-md text-right" style="color:var(--op-text-muted);border-top:1px solid var(--op-border-subtle);padding-top:0.5rem">
+						<p>{info.description}</p>
+						{info.notes && <p class="mt-1">{info.notes}</p>}
+					</div>
+				</details>
+			)
+		}
+	</div>
+
+	<div class="mt-4 space-y-5">
+		{
+			projects.map((p) => {
+				const m = getRepoMetric(keyOf(p), 'upstream_dependencies');
+				const examples: string[] = (m as any)?.examples?.map((e: any) => e.dependency).filter(Boolean) ?? [];
+				return (
+					<div data-project={keyOf(p)} class="border-t border-op-border-subtle pt-4 first:border-t-0 first:pt-0">
+						<div class="flex items-baseline justify-between gap-2">
+							<span class="text-op-sm" style="color:var(--op-text-2)">{p.name}</span>
+							<span class="mono text-op-sm" style="color:var(--op-text)">{m ? m.value : '—'}
+								{m?.label && <span class="text-op-micro ml-1" style="color:var(--op-text-faint)">{m.label}</span>}
+							</span>
+						</div>
+						{examples.length > 0 && (
+							<div class="mt-2 flex flex-wrap gap-1.5">
+								{examples.map((dep) => (
+									<a
+										href={`https://github.com/${dep}`}
+										target="_blank"
+										rel="noopener"
+										class="mono text-op-micro px-2 py-0.5 rounded border border-op-border text-op-blue-light hover:text-op-blue hover:border-op-blue transition-colors"
+									>
+										{dep}
+									</a>
+								))}
+							</div>
+						)}
+					</div>
+				);
+			})
+		}
+	</div>
+</div>

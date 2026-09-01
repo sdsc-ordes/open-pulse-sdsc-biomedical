@@ -1,0 +1,158 @@
+---
+// Project Velocity — a composite CHAOSS metric with no single Open Pulse
+// slug (https://chaoss.community/kb/metric-project-velocity/). Rebuilt as
+// the scatter plot the CHAOSS page itself describes: x = code changes,
+// y = issues closed + reviews, dot size = committers — all log-scaled, all
+// from real Open Pulse CHAOSS metrics (frontend-dev §5: hex literals only
+// inside drawing code, kept to this one module).
+import { getRepoMetric } from '../lib/topics';
+import { PROJECT_VELOCITY } from '../lib/chaoss-models';
+import type { Repo } from '../lib/types';
+
+interface Props {
+	projects: Repo[];
+}
+const { projects } = Astro.props;
+const keyOf = (p: Repo) => `${p.owner}/${p.name}`;
+
+function num(value: string | undefined | null): number | null {
+	if (!value) return null;
+	const n = Number(String(value).replace(/,/g, ''));
+	return Number.isFinite(n) ? n : null;
+}
+
+const points = projects
+	.map((p) => {
+		const key = keyOf(p);
+		const x = num(getRepoMetric(key, PROJECT_VELOCITY.xSlug)?.value);
+		const yParts = PROJECT_VELOCITY.ySlugs.map((s) => num(getRepoMetric(key, s)?.value) ?? 0);
+		const size = num(getRepoMetric(key, PROJECT_VELOCITY.sizeSlug)?.value);
+		if (x === null || size === null) return null;
+		return { project: key, name: p.name, x, y: yParts.reduce((a, b) => a + b, 0), size };
+	})
+	.filter(Boolean);
+
+const hasData = points.length > 0;
+---
+
+{
+	hasData ? (
+		<div class="op-velocity-chart" data-points={JSON.stringify(points)}>
+			<svg id="project-velocity-svg" class="w-full" style="max-height: 360px" />
+			<div class="op-chart-tooltip mono text-op-micro" style="position:fixed;pointer-events:none;opacity:0;background:rgba(20,20,32,0.92);border:1px solid var(--op-border);color:var(--op-text);padding:4px 8px;z-index:20;" />
+		</div>
+	) : (
+		<p class="text-op-sm" style="color:var(--op-text-muted)">Not enough data across these projects to plot Project Velocity.</p>
+	)
+}
+
+<script>
+	import * as d3 from 'd3';
+
+	const BLUE = '#5561a6';
+	const BLUE_LIGHT = '#8a94c9';
+	const GRID = '#242438';
+	const TEXT_MUTED = '#9898b8';
+
+	function render(container: Element) {
+		const svg = container.querySelector('svg') as SVGSVGElement;
+		const tooltip = container.querySelector('.op-chart-tooltip') as HTMLElement;
+		const points = JSON.parse(container.getAttribute('data-points') || '[]') as {
+			project: string;
+			name: string;
+			x: number;
+			y: number;
+			size: number;
+		}[];
+		if (!points.length) return;
+
+		const width = svg.clientWidth || 640;
+		const height = 360;
+		const margin = { top: 16, right: 24, bottom: 40, left: 56 };
+
+		const x = d3
+			.scaleLog()
+			.domain([1, (d3.max(points, (d) => d.x) || 1) + 1])
+			.range([margin.left, width - margin.right])
+			.clamp(true);
+		const y = d3
+			.scaleLog()
+			.domain([1, (d3.max(points, (d) => d.y) || 1) + 1])
+			.range([height - margin.bottom, margin.top])
+			.clamp(true);
+		const r = d3
+			.scaleSqrt()
+			.domain([0, d3.max(points, (d) => d.size) || 1])
+			.range([4, 22]);
+
+		const root = d3.select(svg).attr('viewBox', `0 0 ${width} ${height}`);
+		root.selectAll('*').remove();
+
+		root
+			.append('g')
+			.attr('transform', `translate(0,${height - margin.bottom})`)
+			.call(d3.axisBottom(x).ticks(4, '~s'))
+			.call((g) => g.select('.domain').attr('stroke', GRID))
+			.selectAll('text')
+			.attr('font-family', 'JetBrains Mono, monospace')
+			.attr('font-size', 11)
+			.attr('fill', TEXT_MUTED);
+
+		root
+			.append('g')
+			.attr('transform', `translate(${margin.left},0)`)
+			.call(d3.axisLeft(y).ticks(4, '~s'))
+			.call((g) => g.select('.domain').attr('stroke', GRID))
+			.selectAll('text')
+			.attr('font-family', 'JetBrains Mono, monospace')
+			.attr('font-size', 11)
+			.attr('fill', TEXT_MUTED);
+
+		root
+			.append('text')
+			.attr('x', width / 2)
+			.attr('y', height - 4)
+			.attr('text-anchor', 'middle')
+			.attr('font-family', 'Switzer, system-ui, sans-serif')
+			.attr('font-size', 11)
+			.attr('fill', TEXT_MUTED)
+			.text('Code changes (lines, log scale) →');
+
+		root
+			.append('text')
+			.attr('transform', `translate(14,${height / 2}) rotate(-90)`)
+			.attr('text-anchor', 'middle')
+			.attr('font-family', 'Switzer, system-ui, sans-serif')
+			.attr('font-size', 11)
+			.attr('fill', TEXT_MUTED)
+			.text('Issues closed + reviews (log scale) →');
+
+		root
+			.selectAll('circle')
+			.data(points)
+			.join('circle')
+			.attr('data-project', (d) => d.project)
+			.attr('cx', (d) => x(d.x + 1))
+			.attr('cy', (d) => y(d.y + 1))
+			.attr('r', (d) => r(d.size))
+			.attr('fill', BLUE)
+			.attr('fill-opacity', 0.55)
+			.attr('stroke', BLUE_LIGHT)
+			.style('cursor', 'pointer')
+			.on('mouseenter', function (_e, d) {
+				d3.select(this).attr('fill-opacity', 0.85);
+				tooltip.style.opacity = '1';
+				tooltip.textContent = `${d.name} · code changes ${d.x.toLocaleString()} · issues+reviews ${d.y.toLocaleString()} · committers ${d.size}`;
+			})
+			.on('mousemove', (event: MouseEvent) => {
+				tooltip.style.left = `${event.clientX + 12}px`;
+				tooltip.style.top = `${event.clientY + 12}px`;
+			})
+			.on('mouseleave', function () {
+				d3.select(this).attr('fill-opacity', 0.55);
+				tooltip.style.opacity = '0';
+			});
+	}
+
+	document.querySelectorAll('.op-velocity-chart').forEach(render);
+</script>

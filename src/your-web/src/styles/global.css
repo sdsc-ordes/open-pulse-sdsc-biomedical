@@ -1,0 +1,172 @@
+@import 'tailwindcss';
+
+/* Open Pulse dark theme — values for the --op-* token contract.
+ * Copied verbatim from .claude/skills/openpulse-dark-theme/assets/tokens.css
+ * (frontend-dev §2). Permanent dark — no light mode, no .dark toggle.
+ */
+:root {
+  --op-font-heading: 'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
+  --op-font-body: 'Switzer', system-ui, sans-serif;
+  --op-font-mono: 'JetBrains Mono', monospace;
+
+  --op-bg: #0c0c12;
+  --op-surface: #141420;
+  --op-surface-2: #1c1c2c;
+  --op-surface-active: #1a1834;
+  --op-border: #242438;
+  --op-border-subtle: #1a1a28;
+
+  --op-blue-darker: #161438;
+  --op-blue-dark: #26235c;
+  --op-blue-mid: #434e85;
+  --op-blue: #5561a6;
+  --op-blue-light: #8a94c9;
+  --op-blue-pale: #1a1834;
+
+  --op-text: #f4f4fc;
+  --op-text-2: #c0c0dc;
+  --op-text-muted: #9898b8;
+  --op-text-faint: #6a6a88;
+  --op-text-on-blue: #ffffff;
+
+  --op-success: #34d399;
+  --op-error: #f87171;
+  --op-warning: #fbbf24;
+  --op-info: var(--op-blue);
+
+  --op-footer-bg: #000000;
+  --op-footer-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Tailwind theme mirror (frontend-dev §2.2) — generates bg-op-*, text-op-*,
+ * border-op-* utilities from the same values. */
+@theme {
+  --color-op-bg: var(--op-bg);
+  --color-op-surface: var(--op-surface);
+  --color-op-surface-2: var(--op-surface-2);
+  --color-op-surface-active: var(--op-surface-active);
+  --color-op-border: var(--op-border);
+  --color-op-border-subtle: var(--op-border-subtle);
+
+  --color-op-blue-darker: var(--op-blue-darker);
+  --color-op-blue-dark: var(--op-blue-dark);
+  --color-op-blue-mid: var(--op-blue-mid);
+  --color-op-blue: var(--op-blue);
+  --color-op-blue-light: var(--op-blue-light);
+  --color-op-blue-pale: var(--op-blue-pale);
+
+  --color-op-text: var(--op-text);
+  --color-op-text-2: var(--op-text-2);
+  --color-op-text-muted: var(--op-text-muted);
+  --color-op-text-faint: var(--op-text-faint);
+  --color-op-text-on-blue: var(--op-text-on-blue);
+
+  --color-op-success: var(--op-success);
+  --color-op-error: var(--op-error);
+  --color-op-warning: var(--op-warning);
+  --color-op-info: var(--op-info);
+
+  --color-op-footer-bg: var(--op-footer-bg);
+  --color-op-footer-border: var(--op-footer-border);
+
+  /* Type scale — openpulse-dark-theme §3.1 */
+  --text-op-h1: 48px;
+  --text-op-h1--line-height: 1.2;
+  --text-op-h1--font-weight: 700;
+  --text-op-h2: 32px;
+  --text-op-h2--line-height: 1.2;
+  --text-op-h2--font-weight: 700;
+  --text-op-h3: 24px;
+  --text-op-h3--line-height: 1.25;
+  --text-op-h3--font-weight: 600;
+  --text-op-h4: 18px;
+  --text-op-h4--line-height: 1.3;
+  --text-op-h4--font-weight: 600;
+  --text-op-lg: 18px;
+  --text-op-lg--line-height: 1.6;
+  --text-op-md: 16px;
+  --text-op-md--line-height: 1.6;
+  --text-op-sm: 14px;
+  --text-op-sm--line-height: 1.5;
+  --text-op-button: 14px;
+  --text-op-caps: 12px;
+  --text-op-caps--line-height: 1.5;
+  --text-op-micro: 11px;
+  --text-op-micro--line-height: 1.5;
+}
+
+body {
+  background: var(--op-bg);
+  color: var(--op-text);
+  font-family: var(--op-font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--op-font-heading);
+  letter-spacing: -0.02em;
+}
+
+.mono {
+  font-family: var(--op-font-mono);
+}
+
+/* Provenance disclosure — openpulse-dark-theme §7.5. One shared component,
+ * never bespoke per-section explanations (frontend-dev §7). */
+.op-provenance {
+  border-top: 1px solid var(--op-border-subtle);
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  font-size: 12px;
+}
+
+.op-provenance summary {
+  cursor: pointer;
+  color: var(--op-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  list-style: none;
+}
+
+.op-provenance summary::-webkit-details-marker {
+  display: none;
+}
+
+.op-provenance summary:hover {
+  color: var(--op-blue-light);
+}
+
+.op-provenance dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25rem 1rem;
+  margin-top: 0.75rem;
+}
+
+.op-provenance dt {
+  font-size: 11px;
+  color: var(--op-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.op-provenance dd {
+  font-size: 12px;
+  color: var(--op-text-muted);
+}
+
+.op-metric-info summary {
+  list-style: none;
+}
+
+.op-metric-info summary::-webkit-details-marker {
+  display: none;
+}
+
+.op-metric-info[open] summary {
+  color: var(--op-blue-light);
+}
+
+.dot-grid {
+  background-image: radial-gradient(circle, #242438 1px, transparent 1px);
+  background-size: 28px 28px;
+}

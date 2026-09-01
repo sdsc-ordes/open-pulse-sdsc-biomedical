@@ -1,0 +1,61 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ProvenanceDisclosure from '../../../components/ProvenanceDisclosure.astro';
+import CommitChart from '../../../components/CommitChart.astro';
+import ActivityRanking from '../../../components/ActivityRanking.astro';
+import { getStaticTopicPaths, getTopic, healthSnapshot } from '../../../lib/topics';
+
+export function getStaticPaths() {
+	return getStaticTopicPaths();
+}
+
+const { topic: slug } = Astro.params;
+const topic = getTopic(slug!);
+const health = healthSnapshot.topics[topic.slug as keyof typeof healthSnapshot.topics];
+---
+
+<Layout title={`${topic.label} — Health & Activity`}>
+	<section class="max-w-7xl mx-auto px-6 py-12 space-y-4">
+		<p class="text-op-sm uppercase tracking-wide" style="color:var(--op-text-muted)">〇 {topic.label} Vertical</p>
+		<h1 class="text-op-h1" style="color:var(--op-text)">How alive and healthy is it?</h1>
+		<nav class="flex gap-6 text-op-sm pt-2">
+			<a class="text-op-text-muted hover:text-op-blue-light" href={`/topics/${topic.slug}/`}>Landscape</a>
+			<a class="text-op-text-muted hover:text-op-blue-light" href={`/topics/${topic.slug}/community/`}>Community</a>
+			<a class="text-op-blue-light" href={`/topics/${topic.slug}/health/`}>Health &amp; Activity</a>
+		</nav>
+	</section>
+
+	<section class="max-w-7xl mx-auto px-6 py-8">
+		<h2 class="text-op-h3" style="color:var(--op-text)">5-year commit trend</h2>
+		<div class="mt-6 rounded-none border border-op-border bg-op-surface p-8">
+			<CommitChart id={`health-chart-${topic.slug}`} series={health.fiveYearSeries} />
+			<ProvenanceDisclosure
+				source="GrimoireLab / OpenSearch"
+				method="Direct query — commit_date aggregation"
+				refresh="Baked at build time"
+				caveats={`Excludes ${health.repoCount - health.nonForkRepoCount} fork(s) in this Vertical. Counts repos tagged with ${topic.label} — some are also tagged into other Verticals.`}
+			/>
+		</div>
+	</section>
+
+	<section class="max-w-7xl mx-auto px-6 py-8 pb-16">
+		<h2 class="text-op-h3" style="color:var(--op-text)">Most active, last 3 months</h2>
+		<p class="text-op-sm mt-2 max-w-2xl" style="color:var(--op-text-muted)">
+			Ranked by commits in the trailing 90 days. Projects with zero activity in that window are left off the list
+			entirely, not shown at zero.
+		</p>
+		<div class="mt-6 rounded-none border border-op-border bg-op-surface p-8">
+			<ActivityRanking active={health.last90Days} />
+			<ProvenanceDisclosure
+				source="GrimoireLab / OpenSearch"
+				method="Direct query — commit_date range filter, trailing 90 days"
+				refresh="Baked at build time — this list changes on every rebuild"
+				caveats="A live, rebuild-dependent number by nature. A quiet Vertical here reflects the trailing 90 days, not the whole project's history."
+			/>
+		</div>
+		<p class="text-op-sm mt-6" style="color:var(--op-text-muted)">
+			Per-project CHAOSS metrics (Project Viability, Community Activity) live on the
+			<a href={`/topics/${topic.slug}/`} class="text-op-blue-light hover:text-op-blue transition-colors">Landscape page</a>.
+		</p>
+	</section>
+</Layout>

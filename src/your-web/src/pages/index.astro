@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StatTile from '../components/StatTile.astro';
+import TopicCard from '../components/TopicCard.astro';
+import VerticalGrowthChart from '../components/VerticalGrowthChart.astro';
+import ProvenanceDisclosure from '../components/ProvenanceDisclosure.astro';
+import summary from '../data/summary.json';
+import type { SummarySnapshot } from '../lib/types';
+
+const data = summary as unknown as SummarySnapshot;
+---
+
+<Layout title="The Verticals in SDSC">
+	<section class="max-w-7xl mx-auto px-6 py-16 space-y-4">
+		<p class="text-op-sm uppercase tracking-wide" style="color:var(--op-text-muted)">〇 Swiss Data Science Center</p>
+		<h1 class="text-op-h1" style="color:var(--op-text)">The Verticals in SDSC</h1>
+		<p class="text-op-lg max-w-3xl" style="color:var(--op-text-2)">
+			SDSC organises its research into five Verticals — teams working in Biomedical, Environmental, Energy, Digital
+			Society, and Large Infrastructure. This dashboard tracks what each Vertical builds in the open, who's behind it,
+			and how active it is.
+		</p>
+		<div class="max-w-3xl rounded-none border p-6" style="border-color:rgba(251,191,36,0.4);background:var(--op-surface)">
+			<p class="text-op-sm" style="color:var(--op-warning)">A note on coverage</p>
+			<p class="text-op-sm mt-2 leading-relaxed" style="color:var(--op-text-muted)">
+				This dashboard only covers <strong style="color:var(--op-text-2)">open-source repositories</strong>, and only
+				those found in <strong style="color:var(--op-text-2)">GitHub organisations already known to Open Pulse</strong>{' '}
+				({data.orgSplit.map((o) => o.owner).join(', ')}). Work that isn't public, or that lives under an
+				organisation Open Pulse hasn't indexed, isn't represented here. The allocation of each project to a Vertical
+				is a best-effort classification, not an authoritative record — some may be wrong. If you spot one, please
+				flag it to the{' '}
+				<a href="https://github.com/sdsc-ordes/open-pulse/issues" class="underline text-op-warning">Open Pulse team</a>.
+			</p>
+		</div>
+	</section>
+
+	<section class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-3 gap-4">
+		<StatTile value={String(data.totalRepos)} label="public repositories" />
+		<StatTile value={String(data.totalContributors)} label="contributors" />
+		<StatTile value={String(data.orgSplit.length)} label="SDSC GitHub organisations" />
+		<StatTile value={String(data.topics.length)} label="Verticals tracked" />
+		<StatTile value={String(data.crossCuttingCount)} label="cross-cutting tooling repos" href="/cross-cutting-tooling/" />
+		<StatTile value={String(data.totalNonForkRepos)} label="non-forked repositories" />
+	</section>
+
+	<section class="max-w-7xl mx-auto px-6 py-16">
+		<p class="text-op-sm uppercase tracking-wide" style="color:var(--op-text-muted)">〇 Signature visual</p>
+		<h2 class="text-op-h2 mt-2" style="color:var(--op-text)">Five years of growth, by Vertical</h2>
+		<p class="text-op-md mt-2 max-w-2xl" style="color:var(--op-text-2)">
+			Cumulative number of repositories per Vertical, by year. Some repos belong to more than one Vertical, so bars
+			aren't mutually exclusive slices of one total — each colour is that Vertical's own repository count.
+		</p>
+		<div class="mt-8 rounded-none border border-op-border bg-op-surface p-8">
+			<VerticalGrowthChart id="landing-vertical-chart" series={data.topics} />
+			<ProvenanceDisclosure
+				source="GitHub API (op-collections github_repos)"
+				method="Direct query — cumulative count by createdAt, grouped by Vertical"
+				refresh="Baked at build time from the latest hub collection snapshot"
+				caveats="Excludes repos flagged as GitHub forks. Verticals overlap (Large Infrastructure cuts across the other four), so a repo can be counted in more than one bar."
+			/>
+		</div>
+	</section>
+
+	<section class="max-w-7xl mx-auto px-6 py-16">
+		<p class="text-op-sm uppercase tracking-wide" style="color:var(--op-text-muted)">〇 Drill down</p>
+		<h2 class="text-op-h2 mt-2" style="color:var(--op-text)">The five Verticals</h2>
+		<p class="text-op-md mt-2 max-w-2xl" style="color:var(--op-text-2)">
+			A project can belong to more than one Vertical — Large Infrastructure is a project type that cuts across the
+			other four, not a separate domain.
+		</p>
+		<div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+			{data.topics.map((t) => <TopicCard slug={t.slug} label={t.label} repoCount={t.repoCount} fiveYearCommits={t.fiveYearCommits} />)}
+		</div>
+	</section>
+</Layout>

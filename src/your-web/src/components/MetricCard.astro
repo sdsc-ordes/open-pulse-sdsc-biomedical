@@ -1,0 +1,65 @@
+---
+// One CHAOSS metric card: linked metric name (always, even without data),
+// an info popover with the computation method when data exists, and a
+// per-visible-project value list (or an "Under works" badge).
+import { getRepoMetric, getMetricInfo } from '../lib/topics';
+import type { Repo } from '../lib/types';
+import type { ModelMetric } from '../lib/chaoss-models';
+
+interface Props {
+	metric: ModelMetric;
+	projects: Repo[];
+}
+const { metric, projects } = Astro.props;
+const keyOf = (p: Repo) => `${p.owner}/${p.name}`;
+const info = metric.slug ? getMetricInfo(metric.slug) : null;
+---
+
+<div class="rounded-none border border-op-border bg-op-surface p-4">
+	<div class="flex items-center justify-between gap-2">
+		<a href={metric.chaossUrl} class="text-op-sm text-op-blue-light hover:text-op-blue transition-colors" target="_blank" rel="noopener">
+			{metric.name}
+		</a>
+		{
+			info && (
+				<details class="op-metric-info">
+					<summary aria-label={`How is ${metric.name} computed?`} class="cursor-pointer select-none text-op-sm" style="color:var(--op-text-faint)">
+						ⓘ
+					</summary>
+					<div class="mt-2 text-op-micro leading-relaxed" style="color:var(--op-text-muted);border-top:1px solid var(--op-border-subtle);padding-top:0.5rem">
+						<p>{info.description}</p>
+						{info.unification && <p class="mt-1">{info.unification}</p>}
+						{info.notes && <p class="mt-1">{info.notes}</p>}
+					</div>
+				</details>
+			)
+		}
+	</div>
+	{metric.approximation && <p class="text-op-micro mt-1" style="color:var(--op-text-faint)">{metric.approximation}</p>}
+
+	{
+		!metric.slug ? (
+			<>
+				<span class="mt-2 inline-block rounded px-2 py-0.5 text-op-micro font-medium uppercase tracking-wide" style="color:var(--op-text-muted);background:rgba(152,152,184,0.10)">
+					Under works
+				</span>
+				<p class="text-op-micro mt-2" style="color:var(--op-text-faint)">Not yet computed by Open Pulse for any repository.</p>
+			</>
+		) : (
+			<ul class="mt-3 space-y-1.5">
+				{projects.map((p) => {
+					const m = getRepoMetric(keyOf(p), metric.slug as string);
+					return (
+						<li data-project={keyOf(p)} class="flex items-baseline justify-between gap-2 text-op-sm">
+							<span class="truncate" style="color:var(--op-text-2)">{p.name}</span>
+							<span class="mono text-right shrink-0" style="color:var(--op-text)">
+								{m ? m.value : '—'}
+								{m?.label && <span class="text-op-micro ml-1" style="color:var(--op-text-faint)">{m.label}</span>}
+							</span>
+						</li>
+					);
+				})}
+			</ul>
+		)
+	}
+</div>

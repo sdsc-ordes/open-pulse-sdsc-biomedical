@@ -1,0 +1,120 @@
+---
+// Grouped, colour-coded-by-Vertical repo-count growth chart for the landing
+// page — cumulative non-fork repo count per Vertical, by year (ecosystem
+// growth, not commit volume — that cut lives on each Vertical's Health page).
+// Colours come from src/lib/vertical-colors.mjs — canvas/D3 rule (frontend-dev
+// §5): hex literals only inside drawing code, kept to that one module.
+import type { TopicSummary } from '../lib/types';
+
+interface Props {
+	id: string;
+	series: TopicSummary[];
+}
+const { id, series } = Astro.props;
+const payload = series.map((s) => ({ label: s.label, color: s.color, series: s.repoGrowthSeries }));
+---
+
+<div class="op-vertical-chart" data-series={JSON.stringify(payload)}>
+	<svg id={id} class="w-full" style="max-height: 320px"></svg>
+	<div class="mt-4 flex flex-wrap gap-4">
+		{
+			series.map((s) => (
+				<div class="flex items-center gap-2 text-op-sm">
+					<span class="inline-block w-3 h-3" style={`background:${s.color}`} />
+					<span style="color:var(--op-text-2)">{s.label}</span>
+				</div>
+			))
+		}
+	</div>
+	<div class="op-chart-tooltip mono text-op-micro" style="position:fixed;pointer-events:none;opacity:0;background:rgba(20,20,32,0.92);border:1px solid var(--op-border);color:var(--op-text);padding:4px 8px;z-index:20;"></div>
+</div>
+
+<script>
+	import * as d3 from 'd3';
+
+	const GRID = '#242438';
+	const TEXT_MUTED = '#9898b8';
+
+	function render(container: Element) {
+		const svg = container.querySelector('svg') as SVGSVGElement;
+		const tooltip = container.querySelector('.op-chart-tooltip') as HTMLElement;
+		const data = JSON.parse(container.getAttribute('data-series') || '[]') as {
+			label: string;
+			color: string;
+			series: { year: string; repos: number }[];
+		}[];
+		if (!data.length) return;
+
+		const years = [...new Set(data.flatMap((d) => d.series.map((s) => s.year)))].sort();
+		const width = svg.clientWidth || 640;
+		const height = 320;
+		const margin = { top: 16, right: 16, bottom: 28, left: 44 };
+
+		const x0 = d3.scaleBand().domain(years).range([margin.left, width - margin.right]).padding(0.2);
+		const x1 = d3
+			.scaleBand()
+			.domain(data.map((d) => d.label))
+			.range([0, x0.bandwidth()])
+			.padding(0.08);
+		const maxVal = d3.max(data.flatMap((d) => d.series.map((s) => s.repos))) || 1;
+		const y = d3.scaleLinear().domain([0, maxVal]).nice().range([height - margin.bottom, margin.top]);
+
+		const root = d3.select(svg).attr('viewBox', `0 0 ${width} ${height}`);
+		root.selectAll('*').remove();
+
+		root
+			.append('g')
+			.attr('transform', `translate(0,${height - margin.bottom})`)
+			.call(d3.axisBottom(x0).tickSize(0))
+			.call((g) => g.select('.domain').attr('stroke', GRID))
+			.selectAll('text')
+			.attr('font-family', 'JetBrains Mono, monospace')
+			.attr('font-size', 11)
+			.attr('fill', TEXT_MUTED);
+
+		root
+			.append('g')
+			.attr('transform', `translate(${margin.left},0)`)
+			.call(d3.axisLeft(y).ticks(4).tickSize(-(width - margin.left - margin.right)))
+			.call((g) => g.select('.domain').remove())
+			.call((g) => g.selectAll('.tick line').attr('stroke', GRID))
+			.selectAll('text')
+			.attr('font-family', 'JetBrains Mono, monospace')
+			.attr('font-size', 11)
+			.attr('fill', TEXT_MUTED);
+
+		const yearGroups = root
+			.selectAll('g.year-group')
+			.data(years)
+			.join('g')
+			.attr('class', 'year-group')
+			.attr('transform', (year) => `translate(${x0(year)},0)`);
+
+		yearGroups
+			.selectAll('rect')
+			.data((year) => data.map((d) => ({ label: d.label, color: d.color, year, repos: d.series.find((s) => s.year === year)?.repos ?? 0 })))
+			.join('rect')
+			.attr('x', (d) => x1(d.label) as number)
+			.attr('width', x1.bandwidth())
+			.attr('y', (d) => y(d.repos))
+			.attr('height', (d) => height - margin.bottom - y(d.repos))
+			.attr('fill', (d) => d.color)
+			.style('cursor', 'pointer')
+			.style('opacity', 0.9)
+			.on('mouseenter', function (_e, d) {
+				d3.select(this).style('opacity', 1);
+				tooltip.style.opacity = '1';
+				tooltip.textContent = `${d.label} · ${d.year}: ${d.repos.toLocaleString()} repositories`;
+			})
+			.on('mousemove', (event: MouseEvent) => {
+				tooltip.style.left = `${event.clientX + 12}px`;
+				tooltip.style.top = `${event.clientY + 12}px`;
+			})
+			.on('mouseleave', function () {
+				d3.select(this).style('opacity', 0.9);
+				tooltip.style.opacity = '0';
+			});
+	}
+
+	document.querySelectorAll('.op-vertical-chart').forEach(render);
+</script>

@@ -1,0 +1,179 @@
+{
+  "fetchedAt": "2026-09-01T04:51:59.526Z",
+  "totalContributors": 145,
+  "orgSplit": [
+    {
+      "owner": "sdsc-ordes",
+      "repos": 91
+    },
+    {
+      "owner": "sdsc-innovation",
+      "repos": 5
+    }
+  ],
+  "institutions": [
+    {
+      "institution": "École Polytechnique Fédérale de Lausanne",
+      "people": 9
+    },
+    {
+      "institution": "Swiss Data Science Center",
+      "people": 8
+    },
+    {
+      "institution": "Bitergia (Spain)",
+      "people": 7
+    },
+    {
+      "institution": "ETH Zurich",
+      "people": 3
+    },
+    {
+      "institution": "University of Geneva",
+      "people": 2
+    },
+    {
+      "institution": "Vrije Universiteit Brussel",
+      "people": 2
+    },
+    {
+      "institution": "University of Lausanne",
+      "people": 2
+    },
+    {
+      "institution": "Deutsches Zentrum für Luft- und Raumfahrt e. V. (DLR)",
+      "people": 1
+    },
+    {
+      "institution": "University of Montana",
+      "people": 1
+    },
+    {
+      "institution": "Wageningen University & Research",
+      "people": 1
+    },
+    {
+      "institution": "Geosciences Paris-Saclay",
+      "people": 1
+    },
+    {
+      "institution": "Linköping University",
+      "people": 1
+    },
+    {
+      "institution": "Jadavpur University",
+      "people": 1
+    },
+    {
+      "institution": "Maastricht University",
+      "people": 1
+    },
+    {
+      "institution": "RWTH Aachen University",
+      "people": 1
+    },
+    {
+      "institution": "Institut Pasteur",
+      "people": 1
+    },
+    {
+      "institution": "National Laboratory of the Rockies",
+      "people": 1
+    },
+    {
+      "institution": "Linux Foundation",
+      "people": 1
+    },
+    {
+      "institution": "Universidad Nacional de Educación a Distancia",
+      "people": 1
+    },
+    {
+      "institution": "BlackRock (United States)",
+      "people": 1
+    },
+    {
+      "institution": "TH Köln - University of Applied Sciences",
+      "people": 1
+    },
+    {
+      "institution": "Concordia University",
+      "people": 1
+    },
+    {
+      "institution": "University of Nebraska at Omaha",
+      "people": 1
+    },
+    {
+      "institution": "Istituto Nazionale di Fisica Nucleare, Sezione di Bari",
+      "people": 1
+    },
+    {
+      "institution": "Wikimedia Sverige",
+      "people": 1
+    },
+    {
+      "institution": "Hochschulbibliothekszentrum des Landes Nordrhein-Westfalen",
+      "people": 1
+    },
+    {
+      "institution": "Karlstad University",
+      "people": 1
+    },
+    {
+      "institution": "Friedrich Schiller University Jena",
+      "people": 1
+    },
+    {
+      "institution": "University of Central Florida",
+      "people": 1
+    },
+    {
+      "institution": "Dryad Digital Repository",
+      "people": 1
+    },
+    {
+      "institution": "Diamond Harbour Women's University",
+      "people": 1
+    },
+    {
+      "institution": "Side by Side",
+      "people": 1
+    },
+    {
+      "institution": "University of Kalyani",
+      "people": 1
+    },
+    {
+      "institution": "Kobe Pharmaceutical University",
+      "people": 1
+    },
+    {
+      "institution": "ETH Zürich Foundation",
+      "people": 1
+    }
+  ],
+  "swissGovtechPartner": {
+    "org": "swiss",
+    "repos": [
+      "fch-sparql",
+      "fch-cube-dimension",
+      "fch-cube-rawdata",
+      "publiccode-parser-go",
+      "bootstrap-switzerland",
+      "fch-monitoring",
+      "fch-masterdata",
+      "fch-utils",
+      "fch-documentservice-client",
+      "publiccode-editor",
+      "oss-catalog",
+      "opensource-guidelines",
+      "index",
+      "ejpd-status-aggregator",
+      "swiss-federal-writing-guidelines",
+      "govtech-hackathon-2026",
+      "ptbd",
+      ".github"
+    ]
+  }
+}

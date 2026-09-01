@@ -1,0 +1,109 @@
+---
+// Interactive commit-per-year bar chart (D3). Canvas/SVG drawing code is the
+// one place hex literals are allowed (frontend-dev §5) — kept in this single
+// module rather than scattered across pages.
+import type { YearCommits } from '../lib/types';
+
+interface Props {
+	id: string;
+	series: YearCommits[];
+	label?: string;
+}
+const { id, series, label = 'commits' } = Astro.props;
+---
+
+<div class="op-commit-chart" data-series={JSON.stringify(series)} data-label={label}>
+	<svg id={id} class="w-full" style="max-height: 260px"></svg>
+	<div class="op-chart-tooltip mono text-op-micro" style="position:fixed;pointer-events:none;opacity:0;background:rgba(20,20,32,0.92);border:1px solid var(--op-border);color:var(--op-text);padding:4px 8px;z-index:20;"></div>
+</div>
+
+<script>
+	import * as d3 from 'd3';
+
+	const BLUE = '#5561a6';
+	const BLUE_LIGHT = '#8a94c9';
+	const GRID = '#242438';
+	const TEXT_MUTED = '#9898b8';
+
+	function renderChart(container: Element) {
+		const svg = container.querySelector('svg') as SVGSVGElement;
+		const tooltip = container.querySelector('.op-chart-tooltip') as HTMLElement;
+		const series = JSON.parse(container.getAttribute('data-series') || '[]') as { year: string; commits: number }[];
+		const label = container.getAttribute('data-label') || 'commits';
+		if (!series.length) return;
+
+		const width = svg.clientWidth || 640;
+		const height = 260;
+		const margin = { top: 16, right: 16, bottom: 28, left: 40 };
+
+		const x = d3
+			.scaleBand()
+			.domain(series.map((d) => d.year))
+			.range([margin.left, width - margin.right])
+			.padding(0.25);
+		const y = d3
+			.scaleLinear()
+			.domain([0, d3.max(series, (d) => d.commits) || 1])
+			.nice()
+			.range([height - margin.bottom, margin.top]);
+
+		const root = d3.select(svg).attr('viewBox', `0 0 ${width} ${height}`);
+		root.selectAll('*').remove();
+
+		root
+			.append('g')
+			.attr('transform', `translate(0,${height - margin.bottom})`)
+			.call(d3.axisBottom(x).tickSize(0))
+			.call((g) => g.select('.domain').attr('stroke', GRID))
+			.selectAll('text')
+			.attr('font-family', 'JetBrains Mono, monospace')
+			.attr('font-size', 11)
+			.attr('fill', TEXT_MUTED);
+
+		root
+			.append('g')
+			.attr('transform', `translate(${margin.left},0)`)
+			.call(d3.axisLeft(y).ticks(4).tickSize(-(width - margin.left - margin.right)))
+			.call((g) => g.select('.domain').remove())
+			.call((g) => g.selectAll('.tick line').attr('stroke', GRID))
+			.selectAll('text')
+			.attr('font-family', 'JetBrains Mono, monospace')
+			.attr('font-size', 11)
+			.attr('fill', TEXT_MUTED);
+
+		root
+			.selectAll('rect.bar')
+			.data(series)
+			.join('rect')
+			.attr('class', 'bar')
+			.attr('x', (d) => x(d.year) as number)
+			.attr('width', x.bandwidth())
+			.attr('y', (d) => y(d.commits))
+			.attr('height', (d) => height - margin.bottom - y(d.commits))
+			.attr('fill', BLUE)
+			.style('cursor', 'pointer')
+			.on('mouseenter', function (_event: MouseEvent, d) {
+				d3.select(this).attr('fill', BLUE_LIGHT);
+				tooltip.style.opacity = '1';
+				tooltip.textContent = `${d.year}: ${d.commits.toLocaleString()} ${label}`;
+			})
+			.on('mousemove', (event: MouseEvent) => {
+				tooltip.style.left = `${event.clientX + 12}px`;
+				tooltip.style.top = `${event.clientY + 12}px`;
+			})
+			.on('mouseleave', function () {
+				d3.select(this).attr('fill', BLUE);
+				tooltip.style.opacity = '0';
+			});
+	}
+
+	function init() {
+		document.querySelectorAll('.op-commit-chart').forEach(renderChart);
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', init);
+	} else {
+		init();
+	}
+</script>

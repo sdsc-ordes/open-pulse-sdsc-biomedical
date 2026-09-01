@@ -1,0 +1,13 @@
+---
+// Required on every route (CLAUDE.md, frontend-dev §7). Build-time
+// timestamp only — never computed in the browser.
+const timestamp = __BUILD_TIMESTAMP__;
+---
+
+<div class="bg-op-surface-2 border-b border-op-border">
+	<div class="max-w-7xl mx-auto px-6 py-1.5 text-op-micro" style="color:var(--op-text-muted)">
+		Built using
+		<a href="https://openpulse.science" class="text-op-blue-light hover:text-op-blue transition-colors">openpulse.science</a>
+		at <span class="mono">{timestamp}</span>
+	</div>
+</div>
