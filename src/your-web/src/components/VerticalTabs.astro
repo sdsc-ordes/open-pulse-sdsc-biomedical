@@ -1,0 +1,42 @@
+---
+// Eyebrow label + Landscape/Community/Health tab nav, shared across a
+// Vertical's three pages — the "light touch" per-Vertical accent lives here
+// (eyebrow colour, active tab, inactive-tab hover), via the
+// --op-vertical-<slug> custom properties in global.css. Everything else on
+// the page stays on the standard brand blue.
+import { url } from '../lib/url';
+import type { TopicSlug } from '../lib/types';
+
+interface Props {
+	topic: { slug: TopicSlug; label: string };
+	active: 'landscape' | 'community' | 'health';
+}
+const { topic, active } = Astro.props;
+const accent = `var(--op-vertical-${topic.slug})`;
+const tabs = [
+	{ key: 'landscape', label: 'Landscape', href: url(`/topics/${topic.slug}/`) },
+	{ key: 'community', label: 'Community', href: url(`/topics/${topic.slug}/community/`) },
+	{ key: 'health', label: 'Health & Activity', href: url(`/topics/${topic.slug}/health/`) }
+] as const;
+---
+
+<p class="text-op-sm uppercase tracking-wide" style={`color:${accent}`}>〇 {topic.label} Vertical</p>
+<slot />
+<nav class="op-vertical-nav flex gap-8 text-op-h4 pt-3">
+	{tabs.map((t) => <a href={t.href} class={t.key === active ? 'op-vertical-nav-active' : 'op-vertical-nav-inactive'}>{t.label}</a>)}
+</nav>
+
+<style define:vars={{ accent }}>
+	.op-vertical-nav-active {
+		color: var(--accent);
+		font-weight: 600;
+	}
+	.op-vertical-nav-inactive {
+		color: var(--op-text-muted);
+		font-weight: 600;
+		transition: color 150ms;
+	}
+	.op-vertical-nav-inactive:hover {
+		color: var(--accent);
+	}
+</style>

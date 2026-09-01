@@ -76,8 +76,22 @@ const keyOf = (p: Repo) => `${p.owner}/${p.name}`;
 		</div>
 		<p class="text-op-sm mt-1 max-w-2xl" style="color:var(--op-text-muted)">
 			A composite metric — code changes, issues closed, reviews, and committer count as an indicator of development
-			intensity — rebuilt as the scatter plot CHAOSS itself describes: each dot is a project, sized by committer count.
+			intensity — rebuilt as the scatter plot CHAOSS itself describes.
 		</p>
+		<div class="mt-4 max-w-2xl rounded-none border border-op-border-subtle bg-op-surface-2 p-4">
+			<p class="text-op-caps uppercase tracking-wide" style="color:var(--op-text-faint)">How to read this</p>
+			<ul class="mt-2 space-y-1 text-op-sm" style="color:var(--op-text-muted)">
+				<li>Each dot is one project.</li>
+				<li><strong style="color:var(--op-text-2)">Horizontal position</strong> — code changes (lines touched), log-scaled. Further right = more code churn.</li>
+				<li><strong style="color:var(--op-text-2)">Vertical position</strong> — issues closed plus code reviews, log-scaled. Higher up = more review/issue activity.</li>
+				<li><strong style="color:var(--op-text-2)">Dot size</strong> — number of committers. Bigger dot = more people committing.</li>
+			</ul>
+			<p class="text-op-sm mt-2" style="color:var(--op-text-muted)">
+				A project in the <strong style="color:var(--op-text-2)">top right</strong> is moving fast on multiple fronts
+				at once (code + review + issues); one in the <strong style="color:var(--op-text-2)">bottom left</strong> is
+				quiet on all of them. Hover a dot for exact numbers.
+			</p>
+		</div>
 		<div class="mt-6 rounded-none border border-op-border bg-op-surface p-6">
 			<ProjectVelocityChart projects={projects} />
 		</div>

@@ -27,6 +27,8 @@ export interface Repo {
 	createdAt: string | null;
 	pushedAt: string | null;
 	lastCommit: string | null;
+	keywords: string[];
+	disciplines: string[];
 	topics: TopicSlug[];
 	topicUncertain: boolean;
 }

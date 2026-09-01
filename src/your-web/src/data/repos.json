@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-01T06:40:26.969Z",
+  "fetchedAt": "2026-09-01T13:22:47.491Z",
   "repos": [
     {
       "owner": "sdsc-ordes",
@@ -15,6 +15,12 @@
       "createdAt": "2023-11-09T14:34:03",
       "pushedAt": "2025-10-23T12:04:30",
       "lastCommit": "2025-10-23T14:04:30.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -32,6 +38,15 @@
       "createdAt": "2025-06-04T10:02:33",
       "pushedAt": "2025-07-09T07:19:44",
       "lastCommit": "2025-07-09T09:18:31.000Z",
+      "keywords": [],
+      "disciplines": [
+        "Earth science",
+        "computer engineering",
+        "energy engineering",
+        "formal science",
+        "logic",
+        "outline of applied science"
+      ],
       "topics": [
         "energy",
         "large-infrastructure"
@@ -52,6 +67,13 @@
       "createdAt": "2025-04-29T18:35:24",
       "pushedAt": "2025-09-09T14:55:58",
       "lastCommit": "2025-09-09T16:55:57.000Z",
+      "keywords": [],
+      "disciplines": [
+        "chemistry",
+        "computer engineering",
+        "natural science",
+        "outline of applied science"
+      ],
       "topics": [
         "large-infrastructure"
       ],
@@ -71,6 +93,17 @@
       "createdAt": "2025-05-21T13:11:55",
       "pushedAt": "2025-09-09T12:59:46",
       "lastCommit": "2025-09-09T14:59:31.000Z",
+      "keywords": [
+        "documentation",
+        "mkdocs"
+      ],
+      "disciplines": [
+        "chemistry",
+        "computer engineering",
+        "formal science",
+        "logic",
+        "outline of applied science"
+      ],
       "topics": [
         "large-infrastructure"
       ],
@@ -90,6 +123,17 @@
       "createdAt": "2024-09-19T08:15:51",
       "pushedAt": "2025-10-30T08:38:26",
       "lastCommit": "2025-10-30T09:38:19.000Z",
+      "keywords": [
+        "compose",
+        "deployment",
+        "political-debates",
+        "politics"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [
         "digital-society"
       ],
@@ -109,6 +153,14 @@
       "createdAt": "2024-09-18T04:55:12",
       "pushedAt": "2025-10-24T12:36:04",
       "lastCommit": "2025-10-24T14:09:47.000Z",
+      "keywords": [
+        "political-debates"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "sociology"
+      ],
       "topics": [
         "digital-society"
       ],
@@ -128,6 +180,17 @@
       "createdAt": "2025-08-29T10:32:21",
       "pushedAt": "2026-05-29T14:51:05",
       "lastCommit": "2026-07-02T09:03:06.000Z",
+      "keywords": [
+        "ner",
+        "nlp",
+        "privacy"
+      ],
+      "disciplines": [
+        "chemistry",
+        "computer engineering",
+        "natural science",
+        "outline of applied science"
+      ],
       "topics": [
         "biomedical"
       ],
@@ -147,6 +210,11 @@
       "createdAt": "2025-04-28T13:42:38",
       "pushedAt": "2025-07-16T05:58:06",
       "lastCommit": "2025-07-16T07:57:34.000Z",
+      "keywords": [],
+      "disciplines": [
+        "biology",
+        "computer engineering"
+      ],
       "topics": [
         "biomedical"
       ],
@@ -166,6 +234,10 @@
       "createdAt": "2024-08-22T11:48:03",
       "pushedAt": "2024-11-27T15:50:50",
       "lastCommit": "2026-08-25T10:49:20.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -183,6 +255,14 @@
       "createdAt": "2025-03-10T17:01:30",
       "pushedAt": "2025-04-10T08:19:19",
       "lastCommit": "2025-04-10T10:14:45.000Z",
+      "keywords": [
+        "deployment",
+        "example",
+        "kubernetes"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -200,6 +280,15 @@
       "createdAt": "2023-04-13T14:30:22",
       "pushedAt": "2026-05-29T13:36:13",
       "lastCommit": "2026-05-29T15:36:11.000Z",
+      "keywords": [
+        "metadata-extraction",
+        "rdf",
+        "rest-api",
+        "service"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -217,6 +306,16 @@
       "createdAt": "2024-10-24T10:20:42",
       "pushedAt": "2024-10-28T22:06:38",
       "lastCommit": "2024-10-28T23:06:29.000Z",
+      "keywords": [
+        "cypher-query-language",
+        "llm",
+        "neo4j"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -234,6 +333,10 @@
       "createdAt": "2025-06-16T10:27:41",
       "pushedAt": "2025-06-16T12:22:32",
       "lastCommit": "2025-06-16T14:22:24.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -251,6 +354,11 @@
       "createdAt": "2023-12-19T13:30:26",
       "pushedAt": "2025-08-06T14:05:35",
       "lastCommit": "2025-08-06T16:02:50.000Z",
+      "keywords": [],
+      "disciplines": [
+        "bioengineering",
+        "computer engineering"
+      ],
       "topics": [
         "biomedical",
         "large-infrastructure"
@@ -271,6 +379,11 @@
       "createdAt": "2025-05-27T12:05:48",
       "pushedAt": "2025-08-06T13:59:11",
       "lastCommit": "2025-08-06T15:58:07.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "information engineering"
+      ],
       "topics": [
         "biomedical",
         "large-infrastructure"
@@ -291,6 +404,11 @@
       "createdAt": "2024-01-16T14:20:17",
       "pushedAt": "2025-01-24T09:56:49",
       "lastCommit": "2026-08-11T16:52:41.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "information engineering"
+      ],
       "topics": [
         "biomedical",
         "large-infrastructure"
@@ -311,6 +429,18 @@
       "createdAt": "2023-04-19T11:42:31",
       "pushedAt": "2025-11-03T14:40:23",
       "lastCommit": "2025-11-03T15:40:23.000Z",
+      "keywords": [
+        "k8s",
+        "knowledge-graph",
+        "llm",
+        "question-answering",
+        "rest-api"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -328,6 +458,11 @@
       "createdAt": "2025-08-05T09:15:37",
       "pushedAt": "2026-02-04T10:30:53",
       "lastCommit": "2026-02-04T11:30:29.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "information engineering"
+      ],
       "topics": [
         "environmental"
       ],
@@ -347,6 +482,18 @@
       "createdAt": "2023-12-13T09:14:23",
       "pushedAt": "2026-01-28T15:25:10",
       "lastCommit": "2026-07-17T15:12:14.000Z",
+      "keywords": [
+        "cli",
+        "fair",
+        "metadata",
+        "multi-omics",
+        "omics",
+        "rest-api"
+      ],
+      "disciplines": [
+        "bioengineering",
+        "computer engineering"
+      ],
       "topics": [
         "biomedical"
       ],
@@ -366,6 +513,14 @@
       "createdAt": "2023-12-18T20:48:55",
       "pushedAt": "2025-09-26T14:51:38",
       "lastCommit": "2025-09-26T16:50:47.000Z",
+      "keywords": [
+        "omics",
+        "ontology"
+      ],
+      "disciplines": [
+        "bioengineering",
+        "computer engineering"
+      ],
       "topics": [
         "biomedical"
       ],
@@ -385,6 +540,14 @@
       "createdAt": "2024-10-31T09:50:59",
       "pushedAt": "2025-01-23T15:37:19",
       "lastCommit": "2025-01-23T16:37:19.000Z",
+      "keywords": [
+        "pipeline",
+        "rdf",
+        "validation"
+      ],
+      "disciplines": [
+        "information engineering"
+      ],
       "topics": [
         "biomedical",
         "large-infrastructure"
@@ -405,6 +568,10 @@
       "createdAt": "2025-04-14T11:28:19",
       "pushedAt": "2026-03-11T14:25:30",
       "lastCommit": "2026-03-11T15:25:30.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [
         "biomedical",
         "large-infrastructure"
@@ -425,6 +592,11 @@
       "createdAt": "2024-06-24T14:35:22",
       "pushedAt": "2024-06-24T12:06:23",
       "lastCommit": "2024-05-26T19:16:07.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -442,6 +614,16 @@
       "createdAt": "2024-11-14T15:35:50",
       "pushedAt": "2025-10-24T20:14:54",
       "lastCommit": "2025-10-24T21:16:48.000Z",
+      "keywords": [
+        "odtp",
+        "odtp-component",
+        "politica-debates"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "education",
+        "information engineering"
+      ],
       "topics": [
         "digital-society"
       ],
@@ -461,6 +643,11 @@
       "createdAt": "2026-02-17T10:36:02",
       "pushedAt": "2026-05-25T13:24:19",
       "lastCommit": "2026-05-25T03:55:54.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "information engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -478,6 +665,10 @@
       "createdAt": "2025-10-14T08:27:32",
       "pushedAt": "2025-11-24T17:07:37",
       "lastCommit": "2025-11-24T18:07:15.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -495,6 +686,12 @@
       "createdAt": "2024-07-08T10:23:19",
       "pushedAt": "2024-09-08T16:57:43",
       "lastCommit": "2024-09-08T18:44:33.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [
         "large-infrastructure"
       ],
@@ -514,6 +711,17 @@
       "createdAt": "2023-02-20T06:24:18",
       "pushedAt": "2023-09-19T04:23:57",
       "lastCommit": "2023-09-19T06:23:49.000Z",
+      "keywords": [
+        "cube",
+        "library",
+        "parsing",
+        "px",
+        "statistical-data"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "statistics"
+      ],
       "topics": [
         "digital-society"
       ],
@@ -533,6 +741,20 @@
       "createdAt": "2025-03-21T13:53:35",
       "pushedAt": "2026-05-28T15:09:11",
       "lastCommit": "2026-08-12T10:19:29.000Z",
+      "keywords": [
+        "automation",
+        "ci",
+        "cli",
+        "component-based-development",
+        "devenv",
+        "go",
+        "mono-repository",
+        "monorepo",
+        "nix"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -550,6 +772,14 @@
       "createdAt": "2023-09-01T22:52:45",
       "pushedAt": "2026-03-19T16:30:32",
       "lastCommit": "2026-03-19T17:30:29.000Z",
+      "keywords": [
+        "cli",
+        "parsing",
+        "rdf"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -567,6 +797,11 @@
       "createdAt": "2025-02-11T06:54:07",
       "pushedAt": "2025-04-01T11:46:12",
       "lastCommit": "2025-04-01T13:46:06.000Z",
+      "keywords": [],
+      "disciplines": [
+        "biology",
+        "computer engineering"
+      ],
       "topics": [
         "biomedical"
       ],
@@ -586,6 +821,14 @@
       "createdAt": "2025-02-12T15:23:53",
       "pushedAt": "2026-02-07T18:02:26",
       "lastCommit": "2026-02-07T19:02:24.000Z",
+      "keywords": [
+        "example"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "education",
+        "theoretical computer science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -603,6 +846,12 @@
       "createdAt": "2025-02-12T15:24:59",
       "pushedAt": "2026-02-07T18:01:43",
       "lastCommit": "2026-02-07T19:01:42.000Z",
+      "keywords": [
+        "example"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -620,6 +869,22 @@
       "createdAt": "2024-06-26T08:49:28",
       "pushedAt": "2026-05-13T19:28:58",
       "lastCommit": "2026-08-18T10:45:44.000Z",
+      "keywords": [
+        "copier",
+        "copier-template",
+        "go",
+        "justfile",
+        "linux",
+        "macos",
+        "nix",
+        "python",
+        "repository-template",
+        "rust",
+        "treefmt-nix"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -637,6 +902,16 @@
       "createdAt": "2024-02-06T15:49:12",
       "pushedAt": "2025-04-29T09:40:25",
       "lastCommit": "2025-04-29T11:40:24.000Z",
+      "keywords": [
+        "documentation",
+        "ontology",
+        "rdf",
+        "respec",
+        "shacl"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -654,6 +929,14 @@
       "createdAt": "2024-09-08T07:49:04",
       "pushedAt": "2025-06-09T17:18:16",
       "lastCommit": "2025-06-09T19:18:12.000Z",
+      "keywords": [
+        "exercises",
+        "rustlang",
+        "workshop"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -671,6 +954,12 @@
       "createdAt": "2023-06-07T04:20:27",
       "pushedAt": "2023-06-21T08:51:15",
       "lastCommit": "2023-06-21T10:51:15.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -688,6 +977,17 @@
       "createdAt": "2023-06-27T14:38:10",
       "pushedAt": "2023-08-08T09:10:40",
       "lastCommit": "2023-08-08T11:10:40.000Z",
+      "keywords": [
+        "ai",
+        "containers"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "natural science",
+        "outline of applied science",
+        "physics",
+        "theoretical computer science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -705,6 +1005,14 @@
       "createdAt": "2023-02-28T09:27:32",
       "pushedAt": "2024-03-26T16:41:34",
       "lastCommit": "2024-03-26T17:33:57.000Z",
+      "keywords": [
+        "cli",
+        "data-validation",
+        "rdf"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -722,6 +1030,14 @@
       "createdAt": "2024-09-03T05:53:46",
       "pushedAt": "2024-09-03T09:12:44",
       "lastCommit": "2024-09-03T11:12:44.000Z",
+      "keywords": [
+        "rdf",
+        "shacl"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -739,6 +1055,14 @@
       "createdAt": "2025-04-07T09:14:19",
       "pushedAt": "2025-10-29T09:52:53",
       "lastCommit": "2025-10-29T10:52:51.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "formal science",
+        "information engineering",
+        "logic",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -756,6 +1080,12 @@
       "createdAt": "2025-11-06T08:42:37",
       "pushedAt": "2026-04-29T13:48:45",
       "lastCommit": "2026-07-23T10:30:21.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -773,6 +1103,18 @@
       "createdAt": "2024-06-07T13:57:33",
       "pushedAt": "2025-07-21T12:54:31",
       "lastCommit": "2025-07-21T14:54:24.000Z",
+      "keywords": [
+        "cli",
+        "privacy",
+        "rdf"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "formal science",
+        "information engineering",
+        "mathematics",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -790,6 +1132,16 @@
       "createdAt": "2025-04-24T09:07:36",
       "pushedAt": "2026-05-08T15:44:01",
       "lastCommit": "2026-06-15T09:03:20.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "education",
+        "energy engineering",
+        "information engineering",
+        "outline of applied science",
+        "social science",
+        "statistics"
+      ],
       "topics": [
         "energy",
         "large-infrastructure"
@@ -810,6 +1162,16 @@
       "createdAt": "2023-07-25T12:20:50",
       "pushedAt": "2024-05-28T14:18:38",
       "lastCommit": "2024-05-28T16:18:38.000Z",
+      "keywords": [
+        "decision-making",
+        "webapp",
+        "workflows"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -827,6 +1189,18 @@
       "createdAt": "2023-04-06T14:30:55",
       "pushedAt": "2023-12-22T13:41:09",
       "lastCommit": "2023-12-22T14:41:08.000Z",
+      "keywords": [
+        "cat-plus",
+        "linked-data",
+        "workflow"
+      ],
+      "disciplines": [
+        "chemistry",
+        "computer engineering",
+        "information engineering",
+        "natural science",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -844,6 +1218,20 @@
       "createdAt": "2022-12-07T10:19:30",
       "pushedAt": "2026-05-29T10:30:30",
       "lastCommit": "2026-08-05T13:16:46.000Z",
+      "keywords": [
+        "cli",
+        "fair-data",
+        "git",
+        "library",
+        "linked-open-data",
+        "metadata-extraction",
+        "scientific-software"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -861,6 +1249,14 @@
       "createdAt": "2025-05-07T11:33:34",
       "pushedAt": "2026-05-20T08:13:10",
       "lastCommit": "2026-05-20T10:13:07.000Z",
+      "keywords": [
+        "ontology"
+      ],
+      "disciplines": [
+        "chemistry",
+        "computer engineering",
+        "environmental science"
+      ],
       "topics": [
         "energy"
       ],
@@ -880,6 +1276,15 @@
       "createdAt": "2024-10-10T12:24:11",
       "pushedAt": "2025-09-09T14:58:20",
       "lastCommit": "2025-09-09T16:58:19.000Z",
+      "keywords": [
+        "chemistry",
+        "rdf",
+        "rust"
+      ],
+      "disciplines": [
+        "chemistry",
+        "computer engineering"
+      ],
       "topics": [
         "large-infrastructure"
       ],
@@ -899,6 +1304,17 @@
       "createdAt": "2024-10-02T07:27:56",
       "pushedAt": "2025-09-09T12:57:50",
       "lastCommit": "2025-09-09T14:57:50.000Z",
+      "keywords": [
+        "chemistry",
+        "ontology",
+        "rdf",
+        "semantic-web"
+      ],
+      "disciplines": [
+        "chemistry",
+        "computer engineering",
+        "natural science"
+      ],
       "topics": [
         "large-infrastructure"
       ],
@@ -918,6 +1334,11 @@
       "createdAt": "2026-02-18T16:32:26",
       "pushedAt": "2026-03-04T18:56:34",
       "lastCommit": "2026-03-04T19:56:32.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -935,6 +1356,15 @@
       "createdAt": "2025-10-24T06:18:12",
       "pushedAt": "2026-02-27T08:02:39",
       "lastCommit": "2026-02-27T08:47:12.000Z",
+      "keywords": [
+        "debates",
+        "search-engine",
+        "transcription",
+        "translation"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [
         "digital-society"
       ],
@@ -954,6 +1384,14 @@
       "createdAt": "2024-09-23T10:14:58",
       "pushedAt": "2025-10-24T18:49:22",
       "lastCommit": "2025-10-24T14:56:20.000Z",
+      "keywords": [
+        "frontend",
+        "political-debates"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering"
+      ],
       "topics": [
         "digital-society"
       ],
@@ -973,6 +1411,14 @@
       "createdAt": "2022-10-26T07:42:13",
       "pushedAt": "2024-04-30T11:46:40",
       "lastCommit": "2024-04-30T11:46:40.000Z",
+      "keywords": [
+        "biomedical",
+        "workflow"
+      ],
+      "disciplines": [
+        "bioengineering",
+        "computer engineering"
+      ],
       "topics": [
         "biomedical"
       ],
@@ -992,6 +1438,15 @@
       "createdAt": "2023-12-01T07:57:41",
       "pushedAt": "2023-12-08T17:16:47",
       "lastCommit": "2023-12-08T18:16:47.000Z",
+      "keywords": [],
+      "disciplines": [
+        "agricultural science",
+        "biology",
+        "computer engineering",
+        "education",
+        "outline of applied science",
+        "social science"
+      ],
       "topics": [
         "environmental"
       ],
@@ -1011,6 +1466,22 @@
       "createdAt": "2024-04-22T08:24:04",
       "pushedAt": "2025-03-13T09:16:17",
       "lastCommit": "2025-03-13T10:16:06.000Z",
+      "keywords": [
+        "biodiversity",
+        "citizen-science",
+        "gradio",
+        "huggingface",
+        "monitoring",
+        "wildlife"
+      ],
+      "disciplines": [
+        "biology",
+        "computer engineering",
+        "information engineering",
+        "logic",
+        "natural science",
+        "outline of applied science"
+      ],
       "topics": [
         "environmental"
       ],
@@ -1030,6 +1501,13 @@
       "createdAt": "2024-12-04T16:42:54",
       "pushedAt": "2025-10-27T15:18:49",
       "lastCommit": "2025-10-27T16:18:41.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science",
+        "sociology"
+      ],
       "topics": [
         "digital-society"
       ],
@@ -1049,6 +1527,16 @@
       "createdAt": "2024-08-28T11:49:03",
       "pushedAt": "2025-10-23T16:54:35",
       "lastCommit": "2025-10-23T18:54:35.000Z",
+      "keywords": [
+        "cli",
+        "fuzzy-search",
+        "ontologies"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1066,6 +1554,19 @@
       "createdAt": "2023-07-05T10:57:22",
       "pushedAt": "2025-10-02T13:23:57",
       "lastCommit": "2025-10-02T15:23:01.000Z",
+      "keywords": [
+        "epfl",
+        "imaging",
+        "ontology",
+        "sdsc"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "formal science",
+        "logic",
+        "outline of applied science",
+        "theoretical computer science"
+      ],
       "topics": [
         "biomedical",
         "large-infrastructure"
@@ -1086,6 +1587,11 @@
       "createdAt": "2025-07-01T14:11:11",
       "pushedAt": "2025-12-15T13:47:02",
       "lastCommit": "2026-06-07T07:44:42.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "outline of applied science"
+      ],
       "topics": [
         "biomedical",
         "large-infrastructure"
@@ -1106,6 +1612,14 @@
       "createdAt": "2023-08-08T07:24:38",
       "pushedAt": "2023-11-09T17:19:15",
       "lastCommit": "2023-11-09T18:19:12.000Z",
+      "keywords": [
+        "workflow"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1123,6 +1637,17 @@
       "createdAt": "2026-02-16T06:04:15",
       "pushedAt": "2026-05-26T04:39:41",
       "lastCommit": "2026-07-20T11:42:48.000Z",
+      "keywords": [
+        "parquet",
+        "python",
+        "semantic-web",
+        "video-annotation"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [
         "environmental"
       ],
@@ -1142,6 +1667,16 @@
       "createdAt": "2024-07-04T21:33:34",
       "pushedAt": "2026-01-26T10:47:52",
       "lastCommit": "2026-01-26T11:47:06.000Z",
+      "keywords": [
+        "omics",
+        "poster",
+        "presentation"
+      ],
+      "disciplines": [
+        "biology",
+        "computer engineering",
+        "natural science"
+      ],
       "topics": [
         "biomedical"
       ],
@@ -1161,6 +1696,15 @@
       "createdAt": "2024-12-04T13:25:15",
       "pushedAt": "2024-12-09T14:02:47",
       "lastCommit": "2024-12-09T15:02:47.000Z",
+      "keywords": [
+        "graphdb",
+        "pipeline",
+        "rdf"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering"
+      ],
       "topics": [
         "biomedical",
         "large-infrastructure"
@@ -1181,6 +1725,11 @@
       "createdAt": "2025-01-03T14:20:13",
       "pushedAt": "2025-01-07T14:42:24",
       "lastCommit": "2025-01-07T15:25:20.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "information engineering"
+      ],
       "topics": [
         "biomedical",
         "large-infrastructure"
@@ -1201,6 +1750,19 @@
       "createdAt": "2025-03-14T19:26:54",
       "pushedAt": "2025-10-17T12:22:21",
       "lastCommit": "2025-10-17T14:22:17.000Z",
+      "keywords": [
+        "best-practices",
+        "linux",
+        "nix",
+        "nix-flakes",
+        "nixos",
+        "virtualization",
+        "vm",
+        "workshop"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1218,6 +1780,14 @@
       "createdAt": "2024-11-14T20:09:46",
       "pushedAt": "2024-11-15T09:14:03",
       "lastCommit": "2024-11-15T10:13:59.000Z",
+      "keywords": [
+        "odtp",
+        "odtp-component",
+        "political-debates"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1235,6 +1805,18 @@
       "createdAt": "2024-11-04T15:29:33",
       "pushedAt": "2026-01-27T06:47:34",
       "lastCommit": "2026-01-27T07:47:31.000Z",
+      "keywords": [
+        "odtp",
+        "odtp-component",
+        "political-debates",
+        "transcription",
+        "whisper"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1252,6 +1834,10 @@
       "createdAt": "2024-04-15T09:47:04",
       "pushedAt": "2024-06-11T10:57:04",
       "lastCommit": "2024-06-11T10:39:23.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1269,6 +1855,14 @@
       "createdAt": "2025-01-27T12:37:47",
       "pushedAt": "2025-10-10T13:55:53",
       "lastCommit": "2025-10-10T15:55:42.000Z",
+      "keywords": [
+        "community-detection",
+        "graph-algorithms",
+        "neural-network"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1286,6 +1880,10 @@
       "createdAt": "2026-01-06T14:00:55",
       "pushedAt": "2026-03-13T12:33:15",
       "lastCommit": "2026-03-13T13:33:02.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1303,6 +1901,14 @@
       "createdAt": "2026-01-16T11:42:47",
       "pushedAt": "2026-02-12T11:58:35",
       "lastCommit": "2026-02-12T12:58:35.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "formal science",
+        "information engineering",
+        "outline of applied science",
+        "statistics"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1320,6 +1926,13 @@
       "createdAt": "2025-05-14T11:43:52",
       "pushedAt": "2026-05-21T12:07:28",
       "lastCommit": "2026-07-30T14:12:55.000Z",
+      "keywords": [
+        "ontology"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "theoretical computer science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1337,6 +1950,11 @@
       "createdAt": "2024-07-08T10:21:08",
       "pushedAt": "2024-09-09T05:25:38",
       "lastCommit": "2024-09-07T11:59:53.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "information engineering"
+      ],
       "topics": [
         "large-infrastructure"
       ],
@@ -1356,6 +1974,17 @@
       "createdAt": "2025-03-10T12:34:24",
       "pushedAt": "2025-03-12T06:15:14",
       "lastCommit": "2025-03-12T07:15:13.000Z",
+      "keywords": [
+        "exercises",
+        "rdf",
+        "semantics",
+        "workshop"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "education",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1373,6 +2002,13 @@
       "createdAt": "2025-02-12T14:57:47",
       "pushedAt": "2026-02-07T18:00:18",
       "lastCommit": "2026-02-07T19:00:17.000Z",
+      "keywords": [
+        "example"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "education"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1390,6 +2026,12 @@
       "createdAt": "2025-02-12T15:23:29",
       "pushedAt": "2026-02-07T18:02:01",
       "lastCommit": "2026-02-07T19:01:59.000Z",
+      "keywords": [
+        "example"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1407,6 +2049,15 @@
       "createdAt": "2024-12-06T09:57:15",
       "pushedAt": "2025-04-29T11:10:58",
       "lastCommit": "2025-04-29T13:09:58.000Z",
+      "keywords": [],
+      "disciplines": [
+        "biology",
+        "computer engineering",
+        "information engineering",
+        "mechanical engineering",
+        "natural science",
+        "outline of applied science"
+      ],
       "topics": [
         "environmental",
         "large-infrastructure"
@@ -1427,6 +2078,12 @@
       "createdAt": "2024-01-30T15:33:12",
       "pushedAt": "2024-01-30T15:34:44",
       "lastCommit": "2024-01-30T16:34:44.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "education",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1444,6 +2101,17 @@
       "createdAt": "2023-06-20T05:23:41",
       "pushedAt": "2025-09-09T12:24:15",
       "lastCommit": "2025-09-09T14:24:15.000Z",
+      "keywords": [
+        "data-validation",
+        "rdf",
+        "rest-api",
+        "service",
+        "shacl"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1461,6 +2129,19 @@
       "createdAt": "2023-08-21T14:52:10",
       "pushedAt": "2024-03-27T09:51:21",
       "lastCommit": "2024-03-27T10:51:18.000Z",
+      "keywords": [
+        "ci",
+        "data-validation",
+        "github-actions",
+        "rdf",
+        "shacl",
+        "shacl-shapes",
+        "validation"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "theoretical computer science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1478,6 +2159,13 @@
       "createdAt": "2026-03-10T08:36:49",
       "pushedAt": "2026-03-10T10:13:41",
       "lastCommit": "2026-03-10T11:13:37.000Z",
+      "keywords": [],
+      "disciplines": [
+        "Industrial and Production engineering",
+        "business",
+        "computer engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1495,6 +2183,15 @@
       "createdAt": "2025-08-19T08:51:55",
       "pushedAt": "2026-05-18T08:50:06",
       "lastCommit": "2026-02-16T14:52:59.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "humanities",
+        "information engineering",
+        "philosophy",
+        "research",
+        "social science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1512,6 +2209,10 @@
       "createdAt": "2024-06-12T19:12:06",
       "pushedAt": "2026-03-08T16:17:13",
       "lastCommit": "2026-08-12T08:43:36.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1529,6 +2230,14 @@
       "createdAt": "2025-10-02T13:41:50",
       "pushedAt": "2026-05-19T11:16:55",
       "lastCommit": "2026-05-19T13:16:53.000Z",
+      "keywords": [
+        "markdown",
+        "ontologies-api",
+        "rdf"
+      ],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1546,6 +2255,8 @@
       "createdAt": "2026-05-29T08:01:48",
       "pushedAt": "2026-05-29T13:41:02",
       "lastCommit": "2026-05-29T15:40:59.000Z",
+      "keywords": [],
+      "disciplines": [],
       "topics": [
         "digital-society"
       ],
@@ -1565,6 +2276,14 @@
       "createdAt": "2026-04-27T11:11:57",
       "pushedAt": "2026-05-04T14:27:12",
       "lastCommit": "2026-05-04T16:27:08.000Z",
+      "keywords": [],
+      "disciplines": [
+        "bioengineering",
+        "business",
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [
         "biomedical",
         "large-infrastructure"
@@ -1585,6 +2304,12 @@
       "createdAt": "2025-02-05T13:30:19",
       "pushedAt": "2026-06-13T08:12:48",
       "lastCommit": "2026-08-03T08:51:35.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "outline of applied science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1602,6 +2327,10 @@
       "createdAt": "2025-09-18T13:50:58",
       "pushedAt": "2026-06-04T06:05:47",
       "lastCommit": "2026-06-04T08:05:41.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1619,6 +2348,8 @@
       "createdAt": "2026-05-29T12:17:02",
       "pushedAt": "2026-05-29T13:36:32",
       "lastCommit": "2026-05-29T15:36:29.000Z",
+      "keywords": [],
+      "disciplines": [],
       "topics": [
         "digital-society"
       ],
@@ -1638,6 +2369,8 @@
       "createdAt": "2026-05-29T08:20:49",
       "pushedAt": "2026-05-29T13:36:50",
       "lastCommit": "2026-05-29T15:36:47.000Z",
+      "keywords": [],
+      "disciplines": [],
       "topics": [
         "digital-society"
       ],
@@ -1657,6 +2390,11 @@
       "createdAt": "2025-03-10T10:46:44",
       "pushedAt": "2025-08-28T08:02:03",
       "lastCommit": "2025-08-28T08:01:58.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "information engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1674,6 +2412,10 @@
       "createdAt": "2024-01-19T09:42:53",
       "pushedAt": "2024-01-30T07:39:08",
       "lastCommit": "2024-01-30T08:38:21.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1691,6 +2433,15 @@
       "createdAt": "2024-03-01T11:40:41",
       "pushedAt": "2025-07-01T01:57:23",
       "lastCommit": "2025-01-08T20:03:36.000Z",
+      "keywords": [
+        "geotiff",
+        "openstreetmap",
+        "python"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering"
+      ],
       "topics": [
         "environmental"
       ],
@@ -1710,6 +2461,12 @@
       "createdAt": "2024-02-09T10:12:53",
       "pushedAt": "2026-04-26T18:23:33",
       "lastCommit": "2026-04-26T20:23:33.000Z",
+      "keywords": [],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "theoretical computer science"
+      ],
       "topics": [],
       "topicUncertain": false
     },
@@ -1727,6 +2484,17 @@
       "createdAt": "2024-02-28T09:23:59",
       "pushedAt": "2024-07-23T08:47:16",
       "lastCommit": "2024-07-23T10:46:57.000Z",
+      "keywords": [
+        "embedding-vectors",
+        "python",
+        "python-library",
+        "word2vec"
+      ],
+      "disciplines": [
+        "computer engineering",
+        "information engineering",
+        "theoretical computer science"
+      ],
       "topics": [],
       "topicUncertain": false
     }

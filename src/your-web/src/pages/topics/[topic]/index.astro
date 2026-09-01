@@ -3,8 +3,9 @@ import Layout from '../../../layouts/Layout.astro';
 import ProvenanceDisclosure from '../../../components/ProvenanceDisclosure.astro';
 import ChaossMetricsExplorer from '../../../components/ChaossMetricsExplorer.astro';
 import RepoTable from '../../../components/RepoTable.astro';
+import CoverageDisclaimer from '../../../components/CoverageDisclaimer.astro';
+import VerticalTabs from '../../../components/VerticalTabs.astro';
 import { getStaticTopicPaths, getTopic, getTopicRepos, splitActiveArchive } from '../../../lib/topics';
-import { url } from '../../../lib/url';
 
 export function getStaticPaths() {
 	return getStaticTopicPaths();
@@ -15,47 +16,33 @@ const topic = getTopic(slug!);
 const repos = getTopicRepos(topic.slug as any).sort((a, b) => b.stars - a.stars);
 const languages = [...new Set(repos.map((r) => r.language).filter(Boolean))] as string[];
 const licenses = [...new Set(repos.map((r) => r.license).filter(Boolean))] as string[];
-const uncertainCount = repos.filter((r) => r.topicUncertain).length;
 const { active, archive } = splitActiveArchive(repos);
 ---
 
-<Layout title={`${topic.label} — Landscape`}>
+<Layout title={`${topic.label} — Landscape`} accentSlug={topic.slug}>
 	<section class="max-w-7xl mx-auto px-6 py-12 space-y-4">
-		<p class="text-op-sm uppercase tracking-wide" style="color:var(--op-text-muted)">〇 {topic.label} Vertical</p>
-		<h1 class="text-op-h1" style="color:var(--op-text)">What exists?</h1>
-		<p class="text-op-lg max-w-3xl" style="color:var(--op-text-2)">
-			{repos.length} repositories, {languages.length} languages, {licenses.length || 0} declared licenses —{' '}
-			{active.length} active in the last year, {archive.length} archived.
-		</p>
-		<nav class="flex gap-6 text-op-sm pt-2">
-			<a class="text-op-blue-light" href={url(`/topics/${topic.slug}/`)}>Landscape</a>
-			<a class="text-op-text-muted hover:text-op-blue-light" href={url(`/topics/${topic.slug}/community/`)}>Community</a>
-			<a class="text-op-text-muted hover:text-op-blue-light" href={url(`/topics/${topic.slug}/health/`)}>Health &amp; Activity</a>
-		</nav>
+		<VerticalTabs topic={topic} active="landscape">
+			<h1 class="text-op-h1" style="color:var(--op-text)">What exists?</h1>
+			<p class="text-op-lg max-w-3xl" style="color:var(--op-text-2)">
+				{repos.length} repositories, {languages.length} languages, {licenses.length || 0} declared licenses —{' '}
+				{active.length} active in the last year, {archive.length} archived.
+			</p>
+		</VerticalTabs>
 	</section>
 
-	{
-		uncertainCount > 0 && (
-			<section class="max-w-7xl mx-auto px-6">
-				<div class="rounded-none border border-op-warning bg-op-surface p-4" style="border-color:rgba(251,191,36,0.4)">
-					<p class="text-op-sm" style="color:var(--op-warning)">
-						{uncertainCount} of these repos have a judgment-call Vertical assignment (no ground-truth taxonomy exists) —
-						see the coverage note on the <a href={url('/')} class="underline">landing page</a>.
-					</p>
-				</div>
-			</section>
-		)
-	}
+	<section class="max-w-7xl mx-auto px-6">
+		<CoverageDisclaimer />
+	</section>
 
 	<section class="max-w-7xl mx-auto px-6 py-8">
 		<h2 class="text-op-h3" style="color:var(--op-text)">Active projects</h2>
 		<p class="text-op-sm mt-1 mb-4" style="color:var(--op-text-muted)">At least one commit in the last 365 days. Click a column to sort.</p>
 		<RepoTable id={`active-${topic.slug}`} repos={active} currentTopicSlug={topic.slug as any} emptyText="No projects in this Vertical had a commit in the last year." />
 		<ProvenanceDisclosure
-			source="GitHub API (op-collections github_repos) + GrimoireLab / OpenSearch"
-			method="Direct query — People from GitHub's contributor list, Last commit from a commit_date max aggregation"
+			source="GitHub API (op-collections github_repos) + GraphDB (SPARQL op:discipline) + GrimoireLab / OpenSearch"
+			method="Direct query — People from GitHub's contributor list, Keywords from GitHub repo topics, Disciplines from op:discipline resolved via Wikidata, Last commit from a commit_date max aggregation"
 			refresh="Baked at build time from the latest hub collection snapshot"
-			caveats="Vertical assignment is hand-classified, not derived from GitHub tags — some assignments are judgment calls, flagged above. 'People' counts GitHub's contributor list, which can include bots."
+			caveats="Vertical assignment is hand-classified, not derived from GitHub tags — see the coverage note above. 'People' counts GitHub's contributor list, which can include bots. Disciplines are a classifier's best guess, not a manual tag."
 		/>
 	</section>
 

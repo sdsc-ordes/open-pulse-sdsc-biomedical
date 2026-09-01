@@ -27,10 +27,10 @@ const { active, archive } = splitActiveArchive(repos);
 		<p class="text-op-sm mt-1 mb-4" style="color:var(--op-text-muted)">At least one commit in the last 365 days. Click a column to sort.</p>
 		<RepoTable id="active-cross-cutting" repos={active} emptyText="Nothing here had a commit in the last year." />
 		<ProvenanceDisclosure
-			source="GitHub API (op-collections github_repos) + GrimoireLab / OpenSearch"
-			method="Direct query — People from GitHub's contributor list, Last commit from a commit_date max aggregation"
+			source="GitHub API (op-collections github_repos) + GraphDB (SPARQL op:discipline) + GrimoireLab / OpenSearch"
+			method="Direct query — People from GitHub's contributor list, Keywords from GitHub repo topics, Disciplines from op:discipline resolved via Wikidata, Last commit from a commit_date max aggregation"
 			refresh="Baked at build time from the latest hub collection snapshot"
-			caveats="Everything here has zero Vertical tags by construction — it's here because it wasn't confidently classified into one of the five, not because it's less real SDSC work."
+			caveats="Everything here has zero Vertical tags by construction — it's here because it wasn't confidently classified into one of the five, not because it's less real SDSC work. Disciplines are a classifier's best guess, not a manual tag."
 		/>
 	</section>
 

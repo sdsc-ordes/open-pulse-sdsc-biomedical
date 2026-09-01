@@ -5,12 +5,22 @@ import AttributionBar from '../components/AttributionBar.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { url } from '../lib/url';
+import type { TopicSlug } from '../lib/types';
 
 interface Props {
 	title: string;
 	description?: string;
+	/** Set on a Vertical's pages only — tints the page background toward
+	 * that Vertical's accent colour. Omitted on the landing page and
+	 * cross-cutting tooling, which stay on the default --op-bg. */
+	accentSlug?: TopicSlug;
 }
-const { title, description = 'A project dashboard for the Swiss Data Science Center, built on Open Pulse.' } = Astro.props;
+const {
+	title,
+	description = 'A project dashboard for the Swiss Data Science Center, built on Open Pulse.',
+	accentSlug
+} = Astro.props;
+const bodyBg = accentSlug ? `var(--op-vertical-bg-${accentSlug})` : 'var(--op-bg)';
 ---
 
 <html lang="en">
@@ -21,7 +31,7 @@ const { title, description = 'A project dashboard for the Swiss Data Science Cen
 		<meta name="description" content={description} />
 		<title>{title} · SDSC Projects</title>
 	</head>
-	<body class="bg-op-bg text-op-text min-h-screen flex flex-col">
+	<body class="text-op-text min-h-screen flex flex-col" style={`background:${bodyBg}`}>
 		<AttributionBar />
 		<Header />
 		<main class="flex-1">

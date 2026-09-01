@@ -37,6 +37,27 @@ Post-launch feedback changed several things from the plan below (the plan text s
 - **This repo is a GitHub Pages *project* page**, not a `<org>.github.io` root site — `astro.config.mjs` sets `site`/`base` to `https://sdsc-ordes.github.io/open-pulse-sdsc-biomedical`. Every internal link in the app now goes through `src/lib/url.ts`'s `url()` helper (prepends `import.meta.env.BASE_URL`) instead of a bare `href="/..."` — Astro does not rewrite hand-written absolute paths for you, only its own bundled assets. Confirmed via a built-`dist/` grep and a live preview-server click-through.
 - To actually go live: enable *Settings → Pages → Source: GitHub Actions* on the repo (not something this agent can do) — the workflow deploys on the next push to `main` after that.
 
+## Revision — 2026-09-04
+
+- **Coverage disclaimer now on every Vertical page** (Landscape/Community/Health), not just the landing page — extracted to `CoverageDisclaimer.astro`, reused verbatim. Removed the separate per-vertical "N repos have a judgment-call assignment" warning box (now redundant with the disclaimer's own misclassification note).
+- **Keywords and Disciplines columns added** to every Active/Archive repo table (`RepoTable.astro`), sortable like the rest. Keywords = GitHub's own repo topics (op-collections `github_repos.topics`, already fetched — no new query). Disciplines = SPARQL `op:discipline` (Wikidata QIDs), resolved to English labels via one batched `wbgetentities` call in `fetch-data.mjs` — 93/96 repos have at least one, 26 distinct disciplines in this dataset. Both are per-repo classifier output, not manually curated — noted in each table's provenance disclosure.
+
+## Revision — 2026-09-05: per-Vertical accent colour ("light touch")
+
+Each Vertical's 3 pages now carry a distinct accent — the eyebrow label, the active/hover nav tab, and the discipline pills in its repo tables — using the same 5-colour categorical palette already established for the landing-page chart (`--op-vertical-<slug>` custom properties in `global.css`, mirroring `src/lib/vertical-colors.mjs`). Everything else (buttons, body links, card borders, keyword pills) stays on the standard brand blue — a deliberate, narrow deviation from the active theme's own rule that the data-viz palette is graph-canvas-only, chosen over a full per-page reskin. Cross-cutting tooling and the landing page are untouched (no `currentTopicSlug`, so `RepoTable` and the shared header both fall back to the default blue).
+
+New shared component: `VerticalTabs.astro` (eyebrow + Landscape/Community/Health nav with a slot for the page's own `<h1>`) — replaces three near-duplicate header blocks, one per Vertical sub-page.
+
+## Revision — 2026-09-06
+
+- **"A note on coverage" renamed to "Disclaimer"** in `CoverageDisclaimer.astro`.
+- **Per-Vertical page background.** Each Vertical's 3 pages now tint the page body toward that Vertical's accent — `--op-vertical-bg-<slug>` in `global.css`, a `color-mix()` of the accent at 7% over `--op-bg` (derived from the existing accent tokens, not a separately hand-picked colour, so it can't drift out of sync). `Layout.astro` takes an optional `accentSlug` prop and sets the body background inline when present; the landing page and Cross-cutting tooling omit it and stay on plain `--op-bg`, confirmed identical via computed style. Cards/tables keep their normal grey surface — only the negative space between them shows the tint, consistent with the earlier "light touch" call.
+
+## Revision — 2026-09-07
+
+- **Backgrounds weren't distinct enough at 7% mix** — replaced the `color-mix()` formula with 5 hand-picked hex values (`--op-vertical-bg-<slug>` in `global.css`): dark navy (Biomedical), dark forest (Environmental), dark amber/brown (Energy), dark maroon (Digital Society), dark violet (Large Infrastructure). Same dark/low-saturation family as `--op-bg`/`--op-surface`, but each clearly separable at a glance — confirmed via screenshot (Energy vs. Digital Society read as obviously different pages now, not "both basically black").
+- **Landscape / Community / Health & Activity tabs enlarged**: `VerticalTabs.astro` nav bumped from `text-op-sm` (14px) to `text-op-h4` (18px) with explicit `font-weight: 600` on both active and inactive states (Tailwind's text-size theme keys don't reliably carry a paired font-weight, so it's set directly in the component's scoped `<style>`).
+
 ## Scope & audience
 
 - **Scope**: Swiss Data Science Center (SDSC) itself — a lab-cluster dashboard sliced by 5 internal topics: **Biomedical**, **Environmental**, **Energy**, **Digital Society**, **Large Infrastructure**.

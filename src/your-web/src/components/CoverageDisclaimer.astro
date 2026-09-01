@@ -1,0 +1,31 @@
+---
+// The same coverage + snapshot disclaimer shown on the landing page —
+// reused verbatim wherever a reader might land directly (a Vertical page,
+// shared link) without passing through "/" first.
+import { partnersSnapshot } from '../lib/topics';
+---
+
+<div class="max-w-3xl rounded-none border p-6 space-y-4" style="border-color:rgba(251,191,36,0.4);background:var(--op-surface)">
+	<div>
+		<p class="text-op-sm uppercase tracking-wide" style="color:var(--op-warning)">Disclaimer</p>
+		<p class="text-op-sm mt-2 leading-relaxed" style="color:var(--op-text-muted)">
+			This dashboard only covers <strong style="color:var(--op-text-2)">open-source repositories</strong>, and
+			only those found in <strong style="color:var(--op-text-2)">GitHub organisations already known to Open
+			Pulse</strong>{' '}
+			({partnersSnapshot.orgSplit.map((o) => o.owner).join(', ')}). Work that isn't public, or that lives under an
+			organisation Open Pulse hasn't indexed, isn't represented here — including repos Open Pulse has only
+			discovered as a bare reference (a fork or dependency target) but never fully crawled. Each Vertical's
+			work is carried out by <strong style="color:var(--op-text-2)">many internal SDSC teams</strong>, not a
+			single team per Vertical. The allocation of each project to a Vertical is a best-effort classification,
+			not an authoritative record — some may be wrong. If you spot one, please flag it to the{' '}
+			<a href="https://github.com/sdsc-ordes/open-pulse/issues" class="underline text-op-warning">Open Pulse team</a>.
+		</p>
+	</div>
+	<div class="border-t pt-4" style="border-color:rgba(251,191,36,0.25)">
+		<p class="text-op-sm leading-relaxed" style="color:var(--op-text-muted)">
+			Every number on this site is a <strong style="color:var(--op-text-2)">snapshot</strong>, baked at build
+			time from the Open Pulse stores — see the timestamp at the very top of the page. It does not update live,
+			and can drift from the current state of GitHub between rebuilds.
+		</p>
+	</div>
+</div>

@@ -36,6 +36,27 @@
 
   --op-footer-bg: #000000;
   --op-footer-border: rgba(255, 255, 255, 0.1);
+
+  /* Per-Vertical accent — a "light touch" identity per Vertical page
+   * (eyebrow label, active nav tab, discipline pills), NOT general chrome.
+   * Values mirror the data-viz palette in src/lib/vertical-colors.mjs /
+   * openpulse-dark-theme §2.6 — kept identical so the same categorical
+   * colours used in charts are reused here, not reinvented. */
+  --op-vertical-biomedical: #60a5fa;
+  --op-vertical-environmental: #4ade80;
+  --op-vertical-energy: #fbbf24;
+  --op-vertical-digital-society: #f472b6;
+  --op-vertical-large-infrastructure: #a78bfa;
+
+  /* Per-Vertical page background — 5 assorted dark tones, one per hue in
+   * the accent palette above, hand-picked (not a weak %-mix — that read as
+   * "all basically black") for clear separation while staying in the same
+   * dark, low-saturation family as --op-bg / --op-surface. */
+  --op-vertical-bg-biomedical: #10192e; /* dark navy */
+  --op-vertical-bg-environmental: #102417; /* dark forest */
+  --op-vertical-bg-energy: #2a1d0c; /* dark amber/brown */
+  --op-vertical-bg-digital-society: #2a1420; /* dark maroon */
+  --op-vertical-bg-large-infrastructure: #1c1530; /* dark violet */
 }
 
 /* Tailwind theme mirror (frontend-dev §2.2) — generates bg-op-*, text-op-*,

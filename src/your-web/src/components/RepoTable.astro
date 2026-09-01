@@ -12,9 +12,14 @@ interface Props {
 }
 const { id, repos, currentTopicSlug, emptyText = 'None.' } = Astro.props;
 const fmtDate = (iso: string | null) => (iso ? iso.slice(0, 10) : '—');
+// Light-touch per-Vertical accent on discipline pills only; cross-cutting
+// tooling (no currentTopicSlug) stays on the standard brand blue.
+const disciplineAccent = currentTopicSlug ? `var(--op-vertical-${currentTopicSlug})` : 'var(--op-blue-light)';
 
 const COLUMNS: { key: string; label: string; type: 'string' | 'number' | 'date'; align?: 'right' }[] = [
 	{ key: 'name', label: 'Repository', type: 'string' },
+	{ key: 'keywords', label: 'Keywords', type: 'string' },
+	{ key: 'disciplines', label: 'Disciplines', type: 'string' },
 	{ key: 'language', label: 'Language', type: 'string' },
 	{ key: 'license', label: 'License', type: 'string' },
 	{ key: 'stars', label: 'Stars', type: 'number', align: 'right' },
@@ -48,6 +53,8 @@ const COLUMNS: { key: string; label: string; type: 'string' | 'number' | 'date';
 						<tr
 							class="border-t border-op-border"
 							data-name={`${r.owner}/${r.name}`.toLowerCase()}
+							data-keywords={r.keywords.join(', ').toLowerCase()}
+							data-disciplines={r.disciplines.join(', ').toLowerCase()}
 							data-language={(r.language || '').toLowerCase()}
 							data-license={(r.license || '').toLowerCase()}
 							data-stars={r.stars}
@@ -63,6 +70,28 @@ const COLUMNS: { key: string; label: string; type: 'string' | 'number' | 'date';
 									</span>
 								)}
 								{r.description && <p class="text-op-sm mt-1" style="color:var(--op-text-muted)">{r.description}</p>}
+							</td>
+							<td class="px-4 py-3">
+								{r.keywords.length === 0 ? (
+									<span class="text-op-sm" style="color:var(--op-text-faint)">—</span>
+								) : (
+									<div class="flex flex-wrap gap-1 max-w-[14rem]">
+										{r.keywords.map((k) => (
+											<span class="mono text-op-micro px-1.5 py-0.5 rounded border border-op-border" style="color:var(--op-text-muted)">{k}</span>
+										))}
+									</div>
+								)}
+							</td>
+							<td class="px-4 py-3">
+								{r.disciplines.length === 0 ? (
+									<span class="text-op-sm" style="color:var(--op-text-faint)">—</span>
+								) : (
+									<div class="flex flex-wrap gap-1 max-w-[14rem]">
+										{r.disciplines.map((d) => (
+											<span class="text-op-micro px-1.5 py-0.5 rounded" style={`color:${disciplineAccent};background:color-mix(in srgb, ${disciplineAccent} 15%, transparent)`}>{d}</span>
+										))}
+									</div>
+								)}
 							</td>
 							<td class="px-4 py-3 text-op-sm" style="color:var(--op-text-2)">{r.language || '—'}</td>
 							<td class="px-4 py-3 text-op-sm mono" style="color:var(--op-text-2)">{r.license || '—'}</td>

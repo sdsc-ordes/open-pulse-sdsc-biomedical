@@ -20,6 +20,11 @@ jobs:
     defaults:
       run:
         working-directory: src/your-web
+    # `secrets` isn't a valid context inside `if:` (job or step) — only in
+    # `env:`, `with:`, and step bodies. Route the presence check through a
+    # job-level env var instead.
+    env:
+      HAS_OPENPULSE_SECRETS: ${{ secrets.OPENPULSE_ENDPOINT != '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -39,7 +44,7 @@ jobs:
       # entirely if the secrets aren't set, so the site still deploys from
       # whatever snapshot is already committed.
       - name: Refresh data snapshot
-        if: ${{ secrets.OPENPULSE_ENDPOINT != '' }}
+        if: ${{ env.HAS_OPENPULSE_SECRETS == 'true' }}
         env:
           OPENPULSE_ENDPOINT: ${{ secrets.OPENPULSE_ENDPOINT }}
           OPENPULSE_AUTH: ${{ secrets.OPENPULSE_AUTH }}

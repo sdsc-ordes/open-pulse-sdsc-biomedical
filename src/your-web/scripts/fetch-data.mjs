@@ -85,6 +85,29 @@ async function chaoss(path) {
 	return res.json();
 }
 
+async function sparql(query) {
+	const res = await fetch(`${ENDPOINT}/sparql/query`, {
+		method: 'POST',
+		headers: { Authorization: authHeader(), 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/sparql-results+json' },
+		body: new URLSearchParams({ query }).toString()
+	});
+	if (!res.ok) throw new Error(`sparql ${res.status}: ${await res.text()}`);
+	const payload = await res.json();
+	const vars = payload.head.vars;
+	return payload.results.bindings.map((row) => Object.fromEntries(vars.map((v) => [v, row[v]?.value ?? null])));
+}
+
+// op:discipline values are Wikidata QIDs (SKILLS.md §10) — resolve to
+// English labels via a single batched wbgetentities call (≤50 ids at once).
+async function resolveWikidataLabels(qids) {
+	if (!qids.length) return {};
+	const url = `https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${qids.join('|')}&props=labels&languages=en&format=json`;
+	const res = await fetch(url, { headers: { Accept: 'application/json' } });
+	if (!res.ok) return Object.fromEntries(qids.map((q) => [q, q]));
+	const data = await res.json();
+	return Object.fromEntries(qids.map((q) => [q, data.entities?.[q]?.labels?.en?.value || q]));
+}
+
 // ── static classification (no reliable signal to re-derive this from) ─────
 // Hand-classified from repo names/descriptions, confirmed interactively with
 // SDSC (see DASHBOARD.md "Topic → repo classification"). A repo can carry
@@ -201,6 +224,13 @@ async function main() {
 		} catch {
 			contributorsCount = 0;
 		}
+		let keywords = [];
+		try {
+			const list = JSON.parse(r.topics || '[]'); // GitHub's own repo topics — different from our Vertical `topics`
+			keywords = Array.isArray(list) ? list : [];
+		} catch {
+			keywords = [];
+		}
 		return {
 			owner: r.owner,
 			name: r.name,
@@ -215,6 +245,8 @@ async function main() {
 			createdAt: r.created_at || null,
 			pushedAt: r.pushed_at || null,
 			lastCommit: null, // filled in below from OpenSearch, once we have the full repo list
+			keywords,
+			disciplines: [], // filled in below from SPARQL op:discipline, resolved via Wikidata
 			topics,
 			topicUncertain: UNCERTAIN.includes(r.name)
 		};
@@ -244,6 +276,32 @@ async function main() {
 		}
 		for (const r of repos) r.lastCommit = lastByRepo.get(`${r.owner}/${r.name}`) || null;
 		log(`  last-commit date found for ${[...lastByRepo.keys()].length}/${repos.length} repos`);
+	}
+
+	// Disciplines per repo (SPARQL op:discipline, resolved from Wikidata QIDs
+	// to English labels — SKILLS.md §10).
+	log('fetching disciplines…');
+	{
+		const rows = await sparql(
+			`PREFIX op: <https://open-pulse.epfl.ch/ontology#>
+			 SELECT ?repo ?discipline WHERE {
+			   ?repo op:discipline ?discipline .
+			   FILTER(${ORGS.map((o) => `CONTAINS(STR(?repo), '${o}')`).join(' || ')})
+			 }`
+		);
+		const qids = [...new Set(rows.map((r) => r.discipline.split('/').pop()))];
+		const labels = await resolveWikidataLabels(qids);
+		const byRepo = new Map();
+		for (const row of rows) {
+			const m = /github\.com\/([^/]+)\/(.+?)$/i.exec(row.repo);
+			if (!m) continue;
+			const key = `${m[1]}/${m[2]}`;
+			const label = labels[row.discipline.split('/').pop()];
+			if (!byRepo.has(key)) byRepo.set(key, new Set());
+			byRepo.get(key).add(label);
+		}
+		for (const r of repos) r.disciplines = [...(byRepo.get(`${r.owner}/${r.name}`) || [])].sort();
+		log(`  disciplines found for ${byRepo.size}/${repos.length} repos (${qids.length} distinct, resolved via Wikidata)`);
 	}
 
 	await writeFile(join(OUT_DIR, 'repos.json'), JSON.stringify({ fetchedAt, repos }, null, 2));
