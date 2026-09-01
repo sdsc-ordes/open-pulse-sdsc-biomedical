@@ -40,7 +40,7 @@ jobs:
       - uses: actions/setup-node@v4
         if: steps.app.outputs.scaffolded == 'true'
         with:
-          node-version: "20"
+          node-version-file: src/your-web/package.json
           cache: npm
           cache-dependency-path: src/your-web/package-lock.json
 
